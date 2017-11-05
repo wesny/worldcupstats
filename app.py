@@ -14,7 +14,7 @@ env = app.jinja_env
 env.line_statement_prefix = '='
 
 # TODO database integration stuff
-#from models import Country_soccer
+from models import Country_soccer
 
 @app.route("/")
 def home():
