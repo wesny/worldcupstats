@@ -1,13 +1,19 @@
 from flask import Flask
-from flask.ext.sqlalchemy import SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy
+from hashlib import sha512
 import os
 
 app = Flask(__name__)
-app.config.from_pyfile('config.py')
+app.config.from_object('config.Config')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
+app.secret_key = sha512("cybersec").hexdigest()
+app.config['TEMPLATES_AUTO_RELOAD'] = True
 
-from models import Team
+env = app.jinja_env
+env.line_statement_prefix = '='
+
+from models import Country_soccer
 
 @app.route("/")
 def hello():
