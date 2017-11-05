@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 from hashlib import sha512
 import os
@@ -13,11 +13,12 @@ app.config['TEMPLATES_AUTO_RELOAD'] = True
 env = app.jinja_env
 env.line_statement_prefix = '='
 
-from models import Country_soccer
+# TODO database integration stuff
+#from models import Country_soccer
 
 @app.route("/")
 def hello():
-    return "Hello World!"
+    return render_template("test.html")
 
 if __name__ == '__main__':
     app.run(debug=True)
