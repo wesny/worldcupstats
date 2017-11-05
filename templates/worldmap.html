@@ -1,0 +1,100 @@
+<!-- Modified from Google Library examples for Geochart https://developers.google.com/chart/interactive/docs/gallery/geochart -->
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    
+  </head>
+  <body>
+    <div id="regions_div" style="width: 900px; height: 500px;"></div>
+    <p id="demo"></p>
+    <button id="Population" type="button">Population</button>
+    <button id="GDP" type="button">GDP</button>
+    <script type="text/javascript">
+      google.charts.load('current', {
+        'packages':['geochart'],
+        // Note: you will need to get a mapsApiKey for your project.
+        // See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
+        'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
+      });
+      google.charts.setOnLoadCallback(drawRegionsMap);
+
+      type = "Population"
+
+      function drawRegionsMap() {
+        var data = google.visualization.arrayToDataTable([
+          ['Country', 'Popularity'],
+          ['Germany', 200],
+          ['United States', 300],
+          ['Brazil', 400],
+          ['Canada', 500],
+          ['France', 600],
+          ['Russia', 700]
+        ]);
+
+        var data2 = google.visualization.arrayToDataTable([
+          ['Country', 'Popularity'],
+          ['Germany', 200],
+          ['United States', 1000],
+          ['Brazil', 400],
+          ['Canada', 500],
+          ['France', 600],
+          ['Russia', 100]
+        ]);
+
+        var options = {};
+
+        var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+
+        switch(type) {
+          case "Population":
+            chart.draw(data, options);
+            break;
+          case "GDP":
+            chart.draw(data2, options);
+            break;
+          default:
+            chart.draw(data2, options);
+        }
+
+        // Handling Country Selection
+        google.visualization.events.addListener(chart, 'select', function () {
+            var selection = chart.getSelection()[0];
+            if (selection) {
+              var country = data.getValue(selection.row, 0);
+              //alert(country)
+              displayCountryData(country);
+            }
+          })
+      
+      }
+
+      function displayCountryData(country) {
+        document.getElementById("demo").innerHTML = country;
+
+      }
+
+      // Handling Button Clicks
+      m1Button = document.getElementById("Population")
+      m2Button = document.getElementById("GDP")
+
+      m1Button .addEventListener("click", drawPop);
+      function drawPop() {
+        m1Button .innerHTML = "**Population**";
+        m2Button.innerHTML = "GDP";
+
+        type = "Population"
+        drawRegionsMap()
+      }
+
+      m2Button.addEventListener("click", drawMetric2);
+
+      function drawMetric2() {
+        m2Button.innerHTML = "**GDP**";
+        m1Button.innerHTML = "Population";
+        type = "GDP"
+        drawRegionsMap()
+      }
+    </script>
+
+  </body>
+</html>
