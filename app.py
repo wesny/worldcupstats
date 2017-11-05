@@ -17,8 +17,12 @@ env.line_statement_prefix = '='
 #from models import Country_soccer
 
 @app.route("/")
-def hello():
+def home():
     return render_template("test.html")
+
+@app.route("/worldmap")
+def world_map():
+    return render_template("worldmap.html")
 
 if __name__ == '__main__':
     app.run(debug=True)

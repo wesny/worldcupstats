@@ -1,5 +1,16 @@
 # worldcupstats
 
+#### Setup local requirements
+
+- `virtualenv env`
+- `source env/bin/activate`
+- `pip install -r requirements.txt`
+
+#### Setup Local DB
+
+- Create a local db using `createdb worldcupstats_local`
+- Run `export DATABASE_URL="postgresql://localhost/worldcupstats_local"` to set the local variable
+- `python manage.py db upgrade`
 
 #### Database commands
 
