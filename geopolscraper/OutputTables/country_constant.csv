@@ -1,0 +1,233 @@
+Country,Continent,Land Area,BorderLength
+Aruba,Central America and Caribbean,180,39.3
+Antigua And Barbuda,Central America and Caribbean,442.6,31.9
+United Arab Emirates,Middle East,"83,600","1,066"
+Afghanistan,South Asia,"652,230","5,987"
+Algeria,Africa,"2,381,741","6,734"
+Azerbaijan,Middle East,"86,600","2,468"
+Albania,Europe,"28,748",691
+Armenia,Middle East,"29,743","1,570"
+Andorra,Europe,468,118
+Angola,Africa,"1,246,700","5,369"
+American Samoa,Australia-Oceania,199,25.5
+Argentina,South America,"2,780,400","11,968"
+Australia,Australia-Oceania,"7,741,220",38.7
+Austria,Europe,"83,871","2,524"
+Anguilla,Central America and Caribbean,91,34.8
+Akrotiri,Europe,123,48
+Bahrain,Middle East,760,32.3
+Barbados,Central America and Caribbean,430,38.6
+Botswana,Africa,"581,730","4,347.15"
+Bermuda,North America,54,43.4
+Belgium,Europe,"30,528","1,297"
+"Bahamas, The",Central America and Caribbean,"13,880",32
+Bangladesh,South Asia,"148,460","4,413"
+Belize,Central America and Caribbean,"22,966",542
+Bosnia And Herzegovina,Europe,"51,197","1,543"
+Bolivia,South America,"1,098,581","7,252"
+Burma,East & Southeast Asia,"676,578","6,522"
+Benin,Africa,"112,622","2,123"
+Belarus,Europe,"207,600","3,642"
+Solomon Islands,Australia-Oceania,"28,896",22.5
+Brazil,South America,"8,515,770","16,145"
+Bhutan,South Asia,"38,394","1,136"
+Bulgaria,Europe,"110,879","1,806"
+Brunei,East & Southeast Asia,"5,765",266
+Burundi,Africa,"27,830","1,140"
+Canada,North America,"9,984,670","8,893"
+Cambodia,East & Southeast Asia,"181,035","2,530"
+Curacao,Central America and Caribbean,444,36.1
+Chad,Africa,1.284,"6,406"
+Sri Lanka,South Asia,"65,610",32.8
+"Congo, Republic Of The",Africa,"342,000","5,008"
+"Congo, Democratic Republic Of The",Africa,"2,344,858","10,481"
+China,East & Southeast Asia,"9,596,960","22,457"
+Chile,South America,"756,102","7,801"
+Cayman Islands,Central America and Caribbean,264,40
+Cameroon,Africa,"475,440","5,018"
+Comoros,Africa,"2,235",19.9
+Colombia,South America,"1,138,910","6,672"
+Northern Mariana Islands,Australia-Oceania,464,33.6
+Costa Rica,Central America and Caribbean,"51,100",661
+Central African Republic,Africa,"622,984","5,920"
+Cuba,Central America and Caribbean,"110,860",28.5
+Cabo Verde,Africa,"4,033",25.4
+Cook Islands,Australia-Oceania,236,36.6
+Cyprus,Europe,"9,251",156
+Denmark,Europe,"43,094",140
+Djibouti,Africa,"23,200",528
+Dominica,Central America and Caribbean,751,33.5
+Dominican Republic,Central America and Caribbean,"48,670",376
+Dhekelia,Europe,130.8,108
+Ecuador,South America,"283,561","2,237"
+European Union,Europe,"4,479,968","13,271"
+Egypt,Africa,"1,001,450","2,612"
+Ireland,Europe,"70,273",443
+Equatorial Guinea,Africa,"28,051",528
+Estonia,Europe,"45,228",657
+Eritrea,Africa,"117,600","1,840"
+El Salvador,Central America and Caribbean,"21,041",590
+Ethiopia,Africa,"1,104,300","5,925"
+Czechia,Europe,"78,867","2,143"
+Finland,Europe,"338,145","2,563"
+Fiji,Australia-Oceania,"18,274",28.9
+"Micronesia, Federated States Of",Australia-Oceania,702,25.1
+Faroe Islands,Europe,"1,393",37.6
+French Polynesia,Australia-Oceania,"4,167",31.9
+France,Europe,"643,801","2,751"
+"Gambia, The",Africa,"11,300",749
+Gabon,Africa,"267,667","3,261"
+Georgia,Middle East,"69,700","1,814"
+Ghana,Africa,"238,533","2,420"
+Gibraltar,Europe,6.5,1.2
+Grenada,Central America and Caribbean,344,31.5
+Guernsey,Europe,78,43.8
+Greenland,North America,"2,166,086",33.9
+Germany,Europe,"357,022","3,714"
+Guam,Australia-Oceania,544,29
+Greece,Europe,"131,957","1,110"
+Guatemala,Central America and Caribbean,"108,889","1,667"
+Guinea,Africa,"245,857","4,046"
+Guyana,South America,"214,969","2,933"
+Gaza Strip,Middle East,360,72
+Haiti,Central America and Caribbean,"27,750",376
+Hong Kong,East & Southeast Asia,"1,108",33
+Honduras,Central America and Caribbean,"112,090","1,575"
+Croatia,Europe,"56,594","2,237"
+Hungary,Europe,"93,028","2,106"
+Iceland,Europe,"103,000",36.5
+Indonesia,East & Southeast Asia,"1,904,569","2,958"
+Isle Of Man,Europe,572,44.2
+India,South Asia,"3,287,263","13,888"
+Iran,Middle East,"1,648,195","5,894"
+Israel,Middle East,"20,770","1,068"
+Italy,Europe,"301,340","1,836.4"
+Cote D'Ivoire,Africa,"322,463","3,458"
+Iraq,Middle East,"438,317","3,809"
+Japan,East & Southeast Asia,"377,915",47.3
+Jersey,Europe,116,38
+Jamaica,Central America and Caribbean,"10,991",26
+Jordan,Middle East,"89,342","1,744"
+Kenya,Africa,"580,367","3,457"
+Kyrgyzstan,Central Asia,"199,951","4,573"
+"Korea, North",East & Southeast Asia,"120,538","1,607"
+Kiribati,Australia-Oceania,811,24.6
+"Korea, South",East & Southeast Asia,"99,720",237
+Kuwait,Middle East,"17,818",475
+Kosovo,Europe,"10,887",714
+Kazakhstan,Central Asia,"2,724,900","13,364"
+Laos,East & Southeast Asia,"236,800","5,274"
+Lebanon,Middle East,"10,400",484
+Latvia,Europe,"64,589","1,370"
+Lithuania,Europe,"65,300","1,549"
+Liberia,Africa,"111,369","1,667"
+Slovakia,Europe,"49,035","1,611"
+Liechtenstein,Europe,160,75
+Lesotho,Africa,"30,355","1,106"
+Luxembourg,Europe,"2,586",327
+Libya,Africa,"1,759,540","4,339"
+Madagascar,Africa,"587,041",19.7
+Macau,East & Southeast Asia,28.2,3
+Moldova,Europe,"33,851","1,885"
+Mongolia,East & Southeast Asia,"1,564,116","8,082"
+Montserrat,Central America and Caribbean,102,33.2
+Malawi,Africa,"118,484","2,857"
+Montenegro,Europe,"13,812",680
+Macedonia,Europe,"25,713",838
+Mali,Africa,"1,240,192","7,908"
+Monaco,Europe,2,6
+Morocco,Africa,"446,550","2,362.5"
+Mauritius,Africa,"2,040",35.3
+Mauritania,Africa,"1,030,700","5,002"
+Malta,Europe,316,41.8
+Oman,Middle East,"309,500","1,561"
+Maldives,South Asia,298,28.2
+Mexico,North America,"1,964,375","4,389"
+Malaysia,East & Southeast Asia,"329,847","2,742"
+Mozambique,Africa,"799,380","4,783"
+New Caledonia,Australia-Oceania,"18,575",32
+Niger,Africa,1.267,"5,834"
+Vanuatu,Australia-Oceania,"12,189",22
+Nigeria,Africa,"923,768","4,477"
+Netherlands,Europe,"41,543","1,053"
+Norway,Europe,"323,802","2,566"
+Nepal,South Asia,"147,181","3,159"
+Nauru,Australia-Oceania,21,26.4
+Suriname,South America,"163,820","1,907"
+Nicaragua,Central America and Caribbean,"130,370","1,253"
+New Zealand,Australia-Oceania,"268,838",37.9
+South Sudan,Africa,"644,329","6,018"
+Paraguay,South America,"406,752","4,655"
+Peru,South America,"1,285,216","7,062"
+Pakistan,South Asia,"796,095","7,257"
+Poland,Europe,"312,685","3,071"
+Panama,Central America and Caribbean,"75,420",687
+Portugal,Europe,"92,090","1,224"
+Papua New Guinea,East & Southeast Asia,"462,840",824
+Palau,Australia-Oceania,459,33.4
+Guinea-Bissau,Africa,"36,125",762
+Qatar,Middle East,"11,586",87
+Serbia,Europe,"77,474","2,322"
+Marshall Islands,Australia-Oceania,181,22.9
+Saint Martin,Central America and Caribbean,54.4,16
+Romania,Europe,"238,391","2,844"
+Philippines,East & Southeast Asia,"300,000",23.5
+Puerto Rico,Central America and Caribbean,"9,104",41.5
+Russia,Central Asia,"17,098,242","22,408"
+Rwanda,Africa,"26,338",930
+Saudi Arabia,Middle East,"2,149,690","4,272"
+Saint Pierre And Miquelon,North America,242,46.5
+Saint Kitts And Nevis,Central America and Caribbean,261,35
+Seychelles,Africa,455,35.4
+South Africa,Africa,"1,219,090","5,244"
+Senegal,Africa,"196,722","2,684"
+"Saint Helena, Ascension, And Tristan Da Cunha",Africa,394,41.9
+Slovenia,Europe,"20,273","1,211"
+Sint Maarten,Central America and Caribbean,34,16
+Sierra Leone,Africa,"71,740","1,093"
+San Marino,Europe,61,37
+Singapore,East & Southeast Asia,719.2,34.6
+Somalia,Africa,"637,657","2,385"
+Spain,Europe,"505,370","1,952.7"
+Saint Lucia,Central America and Caribbean,616,34.8
+Sudan,Africa,"1,861,484","6,819"
+Sweden,Europe,"450,295","2,211"
+Syria,Middle East,"185,180","2,363"
+Switzerland,Europe,"41,277","1,770"
+Saint Barthelemy,Central America and Caribbean,25,44.1
+Trinidad And Tobago,Central America and Caribbean,"5,128",36
+Thailand,East & Southeast Asia,"513,120","5,673"
+Tajikistan,Central Asia,"144,100","4,130"
+Turks And Caicos Islands,Central America and Caribbean,948,33.3
+Tonga,Australia-Oceania,747,23
+Togo,Africa,"56,785","1,880"
+Sao Tome And Principe,Africa,964,18.4
+Tunisia,Africa,"163,610","1,495"
+Timor-Leste,East & Southeast Asia,"14,874",253
+Turkey,Middle East,"783,562","2,816"
+Tuvalu,Australia-Oceania,26,25.7
+Taiwan,East & Southeast Asia,"35,980",40.7
+Turkmenistan,Central Asia,"488,100","4,158"
+Tanzania,Africa,"947,300","4,161"
+Uganda,Africa,"241,038","2,729"
+United Kingdom,Europe,"243,610",443
+Ukraine,Europe,"603,550","5,618"
+United States,North America,"9,833,517","12,048"
+Burkina Faso,Africa,"274,200","3,611"
+Uruguay,South America,"176,215","1,591"
+Uzbekistan,Central Asia,"447,400","6,893"
+Saint Vincent And The Grenadines,Central America and Caribbean,389,33.6
+Venezuela,South America,"912,050","5,267"
+British Virgin Islands,Central America and Caribbean,151,36.5
+Vietnam,East & Southeast Asia,"331,210","4,616"
+Virgin Islands,Central America and Caribbean,"1,910",41
+Holy See (Vatican City),Europe,0.44,3.4
+Namibia,Africa,"824,292","4,220"
+West Bank,Middle East,"5,860",478
+Wallis And Futuna,Australia-Oceania,142,32.2
+Western Sahara,Africa,"266,000","2,049"
+Samoa,Australia-Oceania,"2,831",24.4
+Swaziland,Africa,"17,364",546
+Yemen,Middle East,"527,968","1,601"
+Zambia,Africa,"752,618","6,043.15"
+Zimbabwe,Africa,"390,757","3,229"
