@@ -43,7 +43,7 @@ class CIA_Scrape():
         print outTbl
 
         #Add table headers
-        outTbl = [["Country", "Continent", "Land_Area", "Border_Length"]] + outTbl
+        outTbl = [["Country", "Continent", "Land Area", "BorderLength"]] + outTbl
 
         #Write table to output
         f = open("./OutputTables/country_constant.csv","w")
@@ -88,16 +88,14 @@ class Parse_CIA_Country_Data():
         stKey = "total: </span><span class=category_data>"
         endKey = " "
         landArea = self.findStringInRegion(d, regionKey, stKey, endKey)
-        landArea = landArea.replace(',', '')
 
         #Find country border length
         regionKey = "Land boundaries:"
         stKey = "total: </span><span class=category_data>"
         enKey = "km"
         borderLength = self.findStringInRegion(d, regionKey, stKey, endKey)
-        borderLength = borderLength.replace(',', '')
 
-        self.countryData = [name, continent, float(landArea), float(borderLength)]
+        self.countryData = [name, continent, landArea, borderLength]
 
     def findString(self, d, stKey, endKey):
         strSt = d.find(stKey) + len(stKey)
