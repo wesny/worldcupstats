@@ -20,10 +20,10 @@ Barbados,Central America and Caribbean,430.0,38.6
 Botswana,Africa,581730.0,4347.15
 Bermuda,North America,54.0,43.4
 Belgium,Europe,30528.0,1297.0
-"Bahamas, The",Central America and Caribbean,13880.0,32.0
+Bahamas,Central America and Caribbean,13880.0,32.0
 Bangladesh,South Asia,148460.0,4413.0
 Belize,Central America and Caribbean,22966.0,542.0
-Bosnia And Herzegovina,Europe,51197.0,1543.0
+Bosnia and Herzegovina,Europe,51197.0,1543.0
 Bolivia,South America,1098581.0,7252.0
 Burma,East & Southeast Asia,676578.0,6522.0
 Benin,Africa,112622.0,2123.0
@@ -40,7 +40,7 @@ Curacao,Central America and Caribbean,444.0,36.1
 Chad,Africa,1.284,6406.0
 Sri Lanka,South Asia,65610.0,32.8
 "Congo, Republic Of The",Africa,342000.0,5008.0
-"Congo, Democratic Republic Of The",Africa,2344858.0,10481.0
+"Congo, Dem. Rep.",Africa,2344858.0,10481.0
 China,East & Southeast Asia,9596960.0,22457.0
 Chile,South America,756102.0,7801.0
 Cayman Islands,Central America and Caribbean,264.0,40.0
@@ -110,9 +110,9 @@ Jamaica,Central America and Caribbean,10991.0,26.0
 Jordan,Middle East,89342.0,1744.0
 Kenya,Africa,580367.0,3457.0
 Kyrgyzstan,Central Asia,199951.0,4573.0
-"Korea, North",East & Southeast Asia,120538.0,1607.0
+North Korea,East & Southeast Asia,120538.0,1607.0
 Kiribati,Australia-Oceania,811.0,24.6
-"Korea, South",East & Southeast Asia,99720.0,237.0
+South Korea,East & Southeast Asia,99720.0,237.0
 Kuwait,Middle East,17818.0,475.0
 Kosovo,Europe,10887.0,714.0
 Kazakhstan,Central Asia,2724900.0,13364.0
@@ -195,7 +195,7 @@ Sweden,Europe,450295.0,2211.0
 Syria,Middle East,185180.0,2363.0
 Switzerland,Europe,41277.0,1770.0
 Saint Barthelemy,Central America and Caribbean,25.0,44.1
-Trinidad And Tobago,Central America and Caribbean,5128.0,36.0
+Trinidad and Tobago,Central America and Caribbean,5128.0,36.0
 Thailand,East & Southeast Asia,513120.0,5673.0
 Tajikistan,Central Asia,144100.0,4130.0
 Turks And Caicos Islands,Central America and Caribbean,948.0,33.3

@@ -97,6 +97,22 @@ class Parse_CIA_Country_Data():
         borderLength = self.findStringInRegion(d, regionKey, stKey, endKey)
         borderLength = borderLength.replace(',', '')
 
+        #Standardize names
+        if name == "Korea, South":
+            name = "South Korea"
+        elif name == "Korea, North":
+            name = "North Korea"
+        elif name == "Bosnia And Herzegovina":
+            name = "Bosnia and Herzegovina"
+        elif name == "Trinidad And Tobago":
+            name = "Trinidad and Tobago"
+        elif name == "Ivory Coast":
+            name = "Cote d'Ivoire"
+        elif name == "Congo, Democratic Republic Of The":
+            name = "Congo, Dem. Rep."
+        elif name == "Bahamas, The":
+            name = "Bahamas"
+
         self.countryData = [name, continent, float(landArea), float(borderLength)]
 
     def findString(self, d, stKey, endKey):
@@ -137,6 +153,19 @@ class Reformat_WB_Data():
         #Add table headers
         outTbl = [["Country", "Country Code", "Date", "GDP", "Population", "Life Expectancy", "Urbanization Percentage", "Per Capita GDP"]] + \
             outTbl
+
+        #Standardize names
+        for i in range(len(outTbl)):
+            if outTbl[i][0] == "Egypt, Arab Rep.":
+                outTbl[i][0] = "Egypt"
+            elif outTbl[i][0] == "Korea, Rep.":
+                outTbl[i][0] = "South Korea"
+            elif outTbl[i][0] == "Russian Federation":
+                outTbl[i][0] = "Russia"
+            elif outTbl[i][0] == 'Iran, Islamic Rep.':
+                outTbl[i][0] = "Iran"
+            elif outTbl[i][0] == 'Slovak Republic':
+                outTbl[i][0] == 'Slovakia'
 
         self.printTable(outTbl)
         
