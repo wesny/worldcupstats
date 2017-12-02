@@ -1,20 +1,20 @@
 from flask import Flask, render_template
-from flask_sqlalchemy import SQLAlchemy
 from hashlib import sha512
 import os
+import psycopg2
+import urlparse
 
 app = Flask(__name__)
-app.config.from_object('config.Config')
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy(app)
 app.secret_key = sha512("cybersec".encode('utf-8')).hexdigest()
 app.config['TEMPLATES_AUTO_RELOAD'] = True
 
+url = urlparse.urlparse(os.environ.get('DATABASE_URL'))
+db = "dbname=%s user=%s password=%s host=%s " % (url.path[1:], url.username, url.password, url.hostname)
+conn = psycopg2.connect(db)
+cur = conn.cursor()
+
 env = app.jinja_env
 env.line_statement_prefix = '='
-
-# TODO database integration stuff
-from models import Country_soccer
 
 @app.route("/")
 def home():
