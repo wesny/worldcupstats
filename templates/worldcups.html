@@ -1,0 +1,31 @@
+= extends "layout.html"
+= set active_page = "home"
+
+= block title
+World Cups
+= endblock
+
+= block head
+= endblock
+
+
+
+= block content
+  <h1>World Cups</h1>
+  <form action="/worldcups" method="GET">
+  	<input type="text" name="year" value="{{ year }}">
+  </form>
+
+	{% if nocup %}
+		<h3>No world cup that year</h3>
+	{% else %}
+		<h3>Winner: {{ winner }}</h3>
+		<h4>Runner-up: {{ runnerup }}</h4>
+		<p><strong>Third: {{ third }}</strong></p>
+		<p>Fourth: {{ fourth }}</p>
+	{% endif %}
+= endblock
+
+
+= block footer
+= endblock
