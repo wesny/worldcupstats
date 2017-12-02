@@ -2,7 +2,7 @@ from flask import Flask, render_template
 from hashlib import sha512
 import os
 import psycopg2
-import urlparse
+from urllib.parse import urlparse
 
 app = Flask(__name__)
 app.secret_key = sha512("cybersec".encode('utf-8')).hexdigest()
