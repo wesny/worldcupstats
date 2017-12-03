@@ -18,7 +18,7 @@ env.line_statement_prefix = '='
 
 @app.route("/")
 def home():
-    return render_template("test.html")
+    return render_template("country_table.html")
 
 @app.route("/worldmap")
 def world_map():
