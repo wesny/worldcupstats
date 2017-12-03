@@ -1,0 +1,58 @@
+= extends "layout.html"
+= set active_page = "home"
+
+= block title
+Wins
+= endblock
+
+= block head
+= endblock
+
+
+
+= block content
+  <h1>Wins</h1>
+  <form action="/wins_overall" method="GET">
+  	<label for="country">Country</label><input type="text" name="country" value="{{ country }}" placeholder="Leave blank for all">
+  	<button>Submit</button>
+  </form>
+  <div class="container">
+  	<div class="row">
+	  	<table class="table table-striped">
+
+
+	    	<thead>
+	          <tr>
+	            <th>Country</th>
+	            <th>Cup Wins</th>
+	            <th>Appearances</th>
+	            <th>Wins</th>
+	            <th>Losses</th>
+	            <th>Draws</th>
+	          </tr>
+	        </thead>
+	        <tbody>
+	            {% for record in records: %}
+
+	                <tr>
+	                    <td>{{ record[0] }}</td>
+	                    <td>{{ record[1] }}</td>
+	                    <td>{{ record[5] }}</td>
+	                    <td>{{ record[2] }}</td>
+	                    <td>{{ record[3] }}</td>
+	                    <td>{{ record[4] }}</td>
+	                </tr>
+
+	            {% endfor %}
+	        </tbody>
+
+
+	    </table>
+	  </div>
+  </div>
+	  
+= endblock
+
+
+= block footer
+= endblock
