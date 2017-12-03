@@ -25,7 +25,7 @@ canvas {
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                    <h5 class="modal-title">Modal title</h5>
+                    <h5 class="modal-title">{{d["country"]}} World Cup Success by Year</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
@@ -42,50 +42,24 @@ canvas {
     </div>
     <script>
         var chartData = {
-            labels: ["January", "February", "March", "April", "May", "June", "July"],
+            labels: {{d['years']}},
             datasets: [{
                 type: 'line',
-                label: 'Dataset 1',
+                label: 'Wins',
+                yAxisID: "y-axis-1",
                 borderColor: window.chartColors.blue,
                 borderWidth: 2,
                 fill: false,
-                data: [
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor()
-                ]
+                data: {{d['wins']}}
+
             }, {
-                type: 'bar',
+                type: 'line',
                 label: 'Dataset 2',
+                yAxisID: "y-axis-2",
                 backgroundColor: window.chartColors.red,
-                data: [
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor()
-                ],
+                data: {{d['per_capita_gdp']}},
                 borderColor: 'white',
                 borderWidth: 2
-            }, {
-                type: 'bar',
-                label: 'Dataset 3',
-                backgroundColor: window.chartColors.green,
-                data: [
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor()
-                ]
             }]
 
         };
@@ -97,12 +71,30 @@ canvas {
                 options: {
                     responsive: true,
                     title: {
-                        display: true,
+                        display: false,
                         text: 'Chart.js Combo Bar Line Chart'
                     },
                     tooltips: {
                         mode: 'index',
                         intersect: true
+                    },
+                    scales: {
+                        yAxes: [{
+                            type: "linear", // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+                            display: true,
+                            position: "left",
+                            id: "y-axis-1",
+                        }, {
+                            type: "linear", // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+                            display: true,
+                            position: "right",
+                            id: "y-axis-2",
+
+                            // grid line settings
+                            gridLines: {
+                                drawOnChartArea: false, // only want the grid lines for one axis to show up
+                            },
+                        }],
                     }
                 }
             });
