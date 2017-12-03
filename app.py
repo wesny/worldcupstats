@@ -88,7 +88,7 @@ def wins_overall():
 	if(request.args):
 		if request.args['country']:
 			records = get_wins_overall(request.args['country'])
-			return render_template("wins.html", country=request.args['country'], records=records)
+			return render_template("wins_overall.html", country=request.args['country'], records=records)
 		else:
 			records = get_wins_overall(0)
 			return render_template("wins_overall.html",country='', records=records)
@@ -105,7 +105,35 @@ def get_wins_overall(country):
 		cur.execute("SELECT * FROM country ORDER BY country_name;")
 		records = cur.fetchall()
 		return records
-	
+
+
+@app.route("/country_information")
+def country_information():
+	if(request.args):
+		if request.args['country']:
+			records = get_country_information(request.args['country'])
+			return render_template("country_information.html", country=request.args['country'], records=records)
+		else:
+			records = get_country_information(0)
+			return render_template("country_information.html",country='', records=records)
+	else:
+		records = get_country_information(0)
+		return render_template("country_information.html",country='', records=records)	
+
+def get_country_information(country):
+	if country:
+		cur.execute("SELECT * FROM public.country_geopol where country='"+country+"';")
+		records = cur.fetchall()
+		return records
+	else:
+		countries = [];
+		cur.execute("SELECT * FROM public.country_geopol ORDER BY country;")
+		records = cur.fetchall()
+		for record in records:
+			countries.append(record[0])
+		print(countries)
+		return records
+
 if __name__ == '__main__':
     app.run(debug=True)
 

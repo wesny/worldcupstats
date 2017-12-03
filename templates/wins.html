@@ -2,22 +2,39 @@
 = set active_page = "home"
 
 = block title
-Wins
+Wins per Year
 = endblock
 
 = block head
+<link rel="stylesheet" href="/static/css/typeahead.css">
 = endblock
 
 
 
 = block content
-  <h1>Wins</h1>
-  <form action="/wins_year" method="GET">
-  	<label for="country">Country</label><input type="text" name="country" value="{{ country }}" placeholder="Leave blank for all">
-  	<label for="year">Year</label><input type="text" name="year" value="{{ year }}" placeholder="Leave blank for all">
-  	<button>Submit</button>
-  </form>
+
+
   <div class="container">
+  	<div class="jumbotron text-center">
+  	 <h1>Wins By Year</h1>
+	  <form action="/wins_year" method="GET">
+	  	<div class="row text-center">
+	  		<div class="col-sm-3 offset-sm-3">
+		  		<label for="country">Country</label>
+		  		<div id="countries" class="scrollable-dropdown-menu">
+		  			<input class="form-control typeahead" type="text" name="country" value="{{ country }}" placeholder="Country">
+		  		</div>
+		  	</div>
+			<div class="col-sm-3">
+		  		<label for="year">Year</label>
+		  		<div id="years" class="scrollable-dropdown-menu">
+		  			<input class="form-control typeahead" type="text" name="year" value="{{ year }}" placeholder="Year">
+		  		</div>
+		  	</div>
+		</div>
+	  		<button class="btn btn-primary">Search</button>
+	  </form>
+	</div>
   	<div class="row">
 	  	<table class="table table-striped">
 
@@ -54,4 +71,57 @@ Wins
 
 
 = block footer
+
+<script src="/static/js/typeahead.bundle.js"></script>
+
+
+<script type="text/javascript">
+	var substringMatcher = function(strs) {
+	  return function findMatches(q, cb) {
+	    var matches, substringRegex;
+
+	    // an array that will be populated with substring matches
+	    matches = [];
+	    console.log('here');
+
+	    // regex used to determine if a string contains the substring `q`
+	    substrRegex = new RegExp(q, 'i');
+
+	    // iterate through the pool of strings and for any string that
+	    // contains the substring `q`, add it to the `matches` array
+	    $.each(strs, function(i, str) {
+	      if (substrRegex.test(str)) {
+	        matches.push(str);
+	      }
+	    });
+
+	    cb(matches);
+	  };
+	};
+	var countries = ['Algeria', 'Angola', 'Argentina', 'Australia', 'Austria', 'Belgium', 'Bolivia', 'Bosnia and Herzegovina', 'Brazil', 'Bulgaria', 'Cameroon', 'Canada', 'Chile', 'China PR', 'Colombia', 'Costa Rica', 'Croatia', 'Cuba', 'Czechoslovakia', 'Czech Republic', 'Denmark', 'Dutch East Indies', 'Ecuador', 'Egypt', 'El Salvador', 'England', 'France', 'German DR', 'Germany', 'Germany FR', 'Ghana', 'Greece', 'Haiti', 'Honduras', 'Hungary', 'Iran', 'Iraq', 'Israel', 'Italy', 'Ivory Coast', 'Jamaica', 'Japan', 'Korea DPR', 'Korea Republic', 'Kuwait', 'Mexico', 'Morocco', 'Netherlands', 'New Zealand', 'Nigeria', 'Northern Ireland', 'Norway', 'Paraguay', 'Peru', 'Poland', 'Portugal', 'Republic of Ireland', 'Romania', 'Russia', 'Saudi Arabia', 'Scotland', 'Senegal', 'Serbia', 'Serbia and Montenegro', 'Slovakia', 'Slovenia', 'South Africa', 'Soviet Union', 'Spain', 'Sweden', 'Switzerland', 'Togo', 'Trinidad and Tobago', 'Tunisia', 'Turkey', 'Ukraine', 'United Arab Emirates', 'Uruguay', 'USA', 'Wales', 'Yugoslavia', 'Zaire']
+
+	var years = ['1930', '1934', '1938', '1950', '1954', '1958', '1962', '1966', '1970', '1974', '1978', '1982', '1986', '1990', '1994', '1998', '2002', '2006', '2010', '2014']
+	$('#countries .typeahead').typeahead(null, {
+	  name: 'countries',
+	  limit: 100,
+	  source: substringMatcher(countries)
+	});
+	$('#years .typeahead').typeahead(null, {
+	  name: 'year',
+	  limit: 100,
+	  source: substringMatcher(years)
+	});
+	// $('#scrollable-dropdown-menu .typeahead').typeahead(null,{
+	//   hint: true,
+	//   highlight: true,
+	//   minLength: 1
+	// },
+	// {
+	//   name: 'states',
+	//   source: substringMatcher(states)
+	// });
+
+</script>
+
+
 = endblock
