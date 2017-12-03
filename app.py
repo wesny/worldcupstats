@@ -143,6 +143,43 @@ def get_wins_overall(country):
 		records = cur.fetchall()
 		return records
 
+@app.route("/country_year")
+def country_year():
+    if(request.args):
+        if request.args['country'] and request.args['year']:
+            records = get_country_year(request.args['country'], request.args['year'])
+            return render_template("country_year_information.html", year=request.args['year'], country=request.args['country'], records=records)
+        elif request.args['country']:
+            records = get_country_year(request.args['country'], 0)
+            return render_template("country_year_information.html", year='', country=request.args['country'], records=records)
+        elif request.args['year']:
+            records = get_country_year(0, request.args['year'])
+            return render_template("country_year_information.html", year=request.args['year'], country='', records=records)
+        else:
+            records = get_country_year(0,0)
+            return render_template("country_year_information.html",year='', country='', records=records)
+    else:
+        records = get_country_year(0,0)
+        return render_template("country_year_information.html",year='', country='', records=records)
+
+
+def get_country_year(country=False,year=False):
+    if year and country:
+        cur.execute("SELECT * FROM public.country_year_geopol where year='"+year+"' and country='"+country+"';")
+        records = cur.fetchall()
+        return records
+    elif country:
+        cur.execute("SELECT * FROM public.country_year_geopol where country='"+country+"' ORDER BY year;")
+        records = cur.fetchall()
+        return records
+    elif year:
+        cur.execute("SELECT * FROM public.country_year_geopol where year='"+year+"' ORDER BY country;")
+        records = cur.fetchall()
+        return records
+    else:
+        cur.execute("SELECT * FROM public.country_year_geopol ORDER BY country, year;")
+        records = cur.fetchall()
+        return records
 
 @app.route("/country_information")
 def country_information():
