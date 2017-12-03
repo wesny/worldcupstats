@@ -1,0 +1,21 @@
+Argentina,  Belgium,  Bolivia,  Brazil,  Chile,  France,  Mexico,  Paraguay,  Peru,  Romania,  United States,  Uruguay,  Yugoslavia
+Austria,  Czechoslovakia,  Egypt,  Germany,  Hungary,  Italy,  Netherlands,  Spain,  Sweden,   Switzerland
+Cuba,  Dutch East Indies,  Norway,  Poland
+England
+Scotland,  South Korea,  Turkey
+Northern Ireland,  Soviet Union,  Wales
+Bulgaria,  Colombia
+North Korea,  Portugal
+El Salvador,  Israel,  Morocco
+Australia,  East Germany,  Haiti,  Zaire
+Iran,  Tunisia
+Algeria,  Cameroon,  Honduras,  Kuwait,  New Zealand
+Canada,  Denmark,  Iraq
+Costa Rica,  Ireland,  United Arab Emirates
+Greece,  Nigeria,  Saudi Arabia
+Croatia,  Jamaica,  Japan,  South Africa
+China,  Ecuador,  Senegal,  Slovenia
+Angola, Ghana, Ivory Coast, Togo, Trinidad and Tobago, Ukraine
+Slovakia, Democratic Republic of the Congo
+Bosnia and Herzegovina
+Iceland, Panama, Qatar
