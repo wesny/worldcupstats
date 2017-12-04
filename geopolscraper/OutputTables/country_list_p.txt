@@ -1,9 +1,9 @@
-Argentina,  Belgium,  Bolivia,  Brazil,  Chile,  France,  Mexico,  Paraguay,  Peru,  Romania,  United States,  Uruguay,  Yugoslavia
+Argentina,  Belgium,  Bolivia,  Brazil,  Chile,  France,  Mexico,  Paraguay,  Peru,  Romania,  United States, United Kingdom, Uruguay,  Yugoslavia
 Austria,  Czechoslovakia,  Egypt,  Germany,  Hungary,  Italy,  Netherlands,  Spain,  Sweden,   Switzerland
 Cuba,  Dutch East Indies,  Norway,  Poland
 England
 Scotland,  South Korea,  Turkey
-Northern Ireland,  Soviet Union,  Wales
+Northern Ireland,  Soviet Union, Russia,  Wales
 Bulgaria,  Colombia
 North Korea,  Portugal
 El Salvador,  Israel,  Morocco

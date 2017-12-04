@@ -15,8 +15,6 @@ class Checker():
 
         #2: Create list of countries
         c_list = genCountryList(pathCL)
-        if "Russia" in c_list:
-            print "Russia in list"
         checkSpellings(c_list)
 
         #3: Make sure that country constant contains each country in country list

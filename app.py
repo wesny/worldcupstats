@@ -209,7 +209,30 @@ def get_country_information(country):
 		return records
 
 def get_stats(country):
-    cur.execute("SELECT * FROM country_year_geopol where country='"+country+"' and year in"+str(tuple(cup_years))+" ORDER BY year;")
+
+    #England, Scotland, NI, Wales -> UK
+    if country == "England" or country == "Scotland" or country == "Northern Ireland" or country == "Wales":
+        country = "United Kingdom"
+
+    #Set historical country names to their modern equivalents
+    if country == "Soviet Union":
+        country = "Russia"
+
+    if country == "East Germany":
+        country = "Germany"
+
+    if country == "Zaire":
+        country = "Democratic Republic of the Congo"
+
+    #Handle NK separately
+    if country == "North Korea":
+        cur.execute("select * from country_geopol where country = 'North Korea';")
+
+    #Fetch full geopol data for country
+    else:
+        cur.execute("select * from country_year_geopol inner join country_geopol using (country) where " +\
+                        "country_year_geopol.country='"+country+"' and country_year_geopol.year in"+str(tuple(cup_years))+\
+                        "ORDER BY country_year_geopol.year;")
     records = cur.fetchall()
     return records
     

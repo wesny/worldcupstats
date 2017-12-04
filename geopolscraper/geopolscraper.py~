@@ -121,6 +121,7 @@ class Parse_CIA_Country_Data():
 
         if name not in c_list:
             self.countryData = None
+            print name
             return
 
         self.countryData = [name, continent, float(landArea), float(borderLength)]
