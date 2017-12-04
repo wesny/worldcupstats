@@ -29,18 +29,8 @@ def home():
     country_info_year = get_country_year(0, mYear);
     country_info = get_country_information(0);
     country_wins_info = get_wins_overall(0);
-
-
-    #cur.execute("SELECT * FROM worldcup;")
-    #records = cur.fetchall()
-    #if len(records) > 0:
-    #    print('Records')
-    #    records = records[0]
     return render_template("worldmap.html", year=mYear, country_year_data=country_info_year, country_win_data=country_wins_info)
-    #else:
-    #    print('Error!')
-    #    return render_template("worldmap.html", year=mYear)
-    #return render_template("worldmap.html")
+
 
 @app.route("/getgraphdata")
 def getgraphdata():

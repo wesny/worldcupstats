@@ -96,29 +96,6 @@ World Cup Stats
   }
 
   function drawRegionsMap() {
-    /*
-    var data = google.visualization.arrayToDataTable([
-      ['Country', type],
-      ['Germany', 200],
-      ['United States', 300],
-      ['Brazil', 400],
-      ['Canada', 500],
-      ['France', 600],
-      ['Russia', 700]
-    ]);
-
-    var data2 = google.visualization.arrayToDataTable([
-      ['Country', type],
-      ['Germany', 200],
-      ['United States', 1000],
-      ['Brazil', 400],
-      ['Canada', 500],
-      ['France', 600],
-      ['Russia', 100]
-    ]);
-    */
-
-    //var dataForView = generateData();
     var data = generateData();
 
 
@@ -127,34 +104,11 @@ World Cup Stats
     var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
     chart.draw(data, options);
 
-    /*
-    switch(type) {
-      case "Population":
-        chart.draw(data, options);
-        break;
-      case "GDP":
-        chart.draw(data2, options);
-        break;
-      case "Life_Expectancy":
-        chart.draw(data3, options);
-        break;
-      case "Urbanization_Percentage":
-        chart.draw(data4, options);
-        break;
-      case "Per_Capita_GDP":
-        chart.draw(data5, options);
-        break;
-      default:
-        chart.draw(data1, options);
-    }
-    */
-
     // Handling Country Selection
     google.visualization.events.addListener(chart, 'select', function () {
         var selection = chart.getSelection()[0];
         if (selection) {
           var country = data.getValue(selection.row, 0);
-          //alert(country)
           displayCountryData(country);
         }
       })
@@ -163,7 +117,16 @@ World Cup Stats
 
   function displayCountryData(country) {
     document.getElementById("country_label").innerHTML = "Country: " + country;
+    document.getElementById("cup_wins").innerHTML = "";
+    document.getElementById("appearances").innerHTML = "";
+    document.getElementById("wins").innerHTML = "";
+    document.getElementById("losses").innerHTML = "";
+    document.getElementById("draws").innerHTML = "";
+    
+    //For Graph Visualization later
     countryToDisplay = country
+    
+    //Display stats for country from data table
     {% for record in country_win_data: %}
 
       country_name = '{{ record[0] }}';
@@ -180,10 +143,10 @@ World Cup Stats
         document.getElementById("losses").innerHTML = "Match Losses: " + losses;
         document.getElementById("draws").innerHTML = "Match Draws: " + draws;
       }
-
     {% endfor %}
   }
 
+  //Handling radio button selection for colorizing map
   var ex1 = document.getElementById('example1');
   var ex2 = document.getElementById('example2');
   var ex3 = document.getElementById('example3');
@@ -195,49 +158,29 @@ World Cup Stats
   ex3.onclick = drawLifeExpec;
   ex4.onclick = drawUrban;
   ex5.onclick = drawPerCapGDP;
-  //ex1.addEventListener("click", drawPop);
-  //ex2.addEventListener("click", drawMetric2);
-
-
-  // Handling Button Clicks
-  //m1Button = document.getElementById("Population")
-  //m2Button = document.getElementById("GDP")
-
-  //m1Button .addEventListener("click", drawPop);
-
-  //m2Button.addEventListener("click", drawMetric2);
+  
+  //Functions to handle colorizing by different metrics
   function drawPop() {
-    //m1Button .innerHTML = "**Population**";
-    //m2Button.innerHTML = "GDP";
-
     type = "Population"
     drawRegionsMap()
   }
 
   function drawGDP() {
-    //m2Button.innerHTML = "**GDP**";
-    //1Button.innerHTML = "Population";
     type = "GDP"
     drawRegionsMap()
   }
 
   function drawLifeExpec() {
-    //m2Button.innerHTML = "**GDP**";
-    //1Button.innerHTML = "Population";
     type = "Life_Expectancy"
     drawRegionsMap()
   }
 
   function drawUrban() {
-    //m2Button.innerHTML = "**GDP**";
-    //1Button.innerHTML = "Population";
     type = "Urbanization_Percentage"
     drawRegionsMap()
   }
 
   function drawPerCapGDP() {
-    //m2Button.innerHTML = "**GDP**";
-    //1Button.innerHTML = "Population";
     type = "Per_Capita_GDP"
     drawRegionsMap()
   }
