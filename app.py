@@ -22,18 +22,13 @@ cup_years = [1930, 1934, 1938, 1950, 1954, 1958, 1962, 1966, 1970, 1974, 1978, 1
 
 @app.route("/")
 def home():
-    d = create_graph_data("Germany")
-    return render_template("country_table.html", d=d)
+    return render_template("worldmap.html")
 
 @app.route("/getgraphdata")
 def getgraphdata():
     country = request.args['country']
     return jsonify(create_graph_data(country))
-
-@app.route("/worldmap")
-def world_map():
-    return render_template("worldmap.html")
-
+    
 @app.route("/worldcups")
 def world_cup():
     # print('World cup')
