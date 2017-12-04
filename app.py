@@ -135,29 +135,117 @@ def create_graph_data(country):
 
 @app.route("/wins_overall")
 def wins_overall():
-    if(request.args):
-        if request.args['country']:
-            records = get_wins_overall(request.args['country'])
-            return render_template("wins.html", country=request.args['country'], records=records)
-        else:
-            records = get_wins_overall(0)
-            return render_template("wins_overall.html",country='', records=records)
-    else:
-        records = get_wins_overall(0)
-        return render_template("wins_overall.html",country='', records=records)     
+	if(request.args):
+		if request.args['country']:
+			records = get_wins_overall(request.args['country'])
+			return render_template("wins_overall.html", country=request.args['country'], records=records)
+		else:
+			records = get_wins_overall(0)
+			return render_template("wins_overall.html",country='', records=records)
+	else:
+		records = get_wins_overall(0)
+		return render_template("wins_overall.html",country='', records=records)		
 
 def get_wins_overall(country):
-    if country:
-        cur.execute("SELECT * FROM country where country_name='"+country+"';")
+	if country:
+		cur.execute("SELECT * FROM country where country_name='"+country+"';")
+		records = cur.fetchall()
+		return records
+	else:
+		cur.execute("SELECT * FROM country ORDER BY country_name;")
+		records = cur.fetchall()
+		return records
+
+@app.route("/country_year")
+def country_year():
+    if(request.args):
+        if request.args['country'] and request.args['year']:
+            records = get_country_year(request.args['country'], request.args['year'])
+            return render_template("country_year_information.html", year=request.args['year'], country=request.args['country'], records=records)
+        elif request.args['country']:
+            records = get_country_year(request.args['country'], 0)
+            return render_template("country_year_information.html", year='', country=request.args['country'], records=records)
+        elif request.args['year']:
+            records = get_country_year(0, request.args['year'])
+            return render_template("country_year_information.html", year=request.args['year'], country='', records=records)
+        else:
+            records = get_country_year(0,0)
+            return render_template("country_year_information.html",year='', country='', records=records)
+    else:
+        records = get_country_year(0,0)
+        return render_template("country_year_information.html",year='', country='', records=records)
+
+
+def get_country_year(country=False,year=False):
+    if year and country:
+        cur.execute("SELECT * FROM public.country_year_geopol where year='"+year+"' and country='"+country+"';")
+        records = cur.fetchall()
+        return records
+    elif country:
+        cur.execute("SELECT * FROM public.country_year_geopol where country='"+country+"' ORDER BY year;")
+        records = cur.fetchall()
+        return records
+    elif year:
+        cur.execute("SELECT * FROM public.country_year_geopol where year='"+year+"' ORDER BY country;")
         records = cur.fetchall()
         return records
     else:
-        cur.execute("SELECT * FROM country ORDER BY country_name;")
+        cur.execute("SELECT * FROM public.country_year_geopol ORDER BY country, year;")
         records = cur.fetchall()
         return records
 
+@app.route("/country_information")
+def country_information():
+	if(request.args):
+		if request.args['country']:
+			records = get_country_information(request.args['country'])
+			return render_template("country_information.html", country=request.args['country'], records=records)
+		else:
+			records = get_country_information(0)
+			return render_template("country_information.html",country='', records=records)
+	else:
+		records = get_country_information(0)
+		return render_template("country_information.html",country='', records=records)	
+
+def get_country_information(country):
+	if country:
+		cur.execute("SELECT * FROM public.country_geopol where country='"+country+"';")
+		records = cur.fetchall()
+		return records
+	else:
+		countries = [];
+		cur.execute("SELECT * FROM public.country_geopol ORDER BY country;")
+		records = cur.fetchall()
+		for record in records:
+			countries.append(record[0])
+		print(countries)
+		return records
+
 def get_stats(country):
-    cur.execute("SELECT * FROM country_year_geopol where country='"+country+"' and year in"+str(tuple(cup_years))+" ORDER BY year;")
+
+    #England, Scotland, NI, Wales -> UK
+    if country == "England" or country == "Scotland" or country == "Northern Ireland" or country == "Wales":
+        country = "United Kingdom"
+
+    #Set historical country names to their modern equivalents
+    if country == "Soviet Union":
+        country = "Russia"
+
+    if country == "East Germany":
+        country = "Germany"
+
+    if country == "Zaire":
+        country = "Democratic Republic of the Congo"
+
+    #Handle NK separately
+    if country == "North Korea":
+        cur.execute("select * from country_geopol where country = 'North Korea';")
+
+    #Fetch full geopol data for country
+    else:
+        cur.execute("select * from country_year_geopol inner join country_geopol using (country) where " +\
+                        "country_year_geopol.country='"+country+"' and country_year_geopol.year in"+str(tuple(cup_years))+\
+                        "ORDER BY country_year_geopol.year;")
     records = cur.fetchall()
     return records
     

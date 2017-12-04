@@ -2,7 +2,7 @@
 = set active_page = "home"
 
 = block title
-Wins Overall
+Country Information
 = endblock
 
 = block head
@@ -14,8 +14,8 @@ Wins Overall
 = block content
 <div class="container">
 	<div class="jumbotron text-center">
-  	 <h1>Wins Overall</h1>
-	  <form action="/wins_overall" method="GET">
+  	 <h1>Country Information</h1>
+	  <form action="/country_information" method="GET">
 	  	<div class="form-group">
 	  		<label class="col-form-label" for="country">Country</label>
 	  		<div id="countries" class="scrollable-dropdown-menu">
@@ -33,11 +33,9 @@ Wins Overall
 	    	<thead>
 	          <tr>
 	            <th>Country</th>
-	            <th>Cup Wins</th>
-	            <th>Appearances</th>
-	            <th>Wins</th>
-	            <th>Losses</th>
-	            <th>Draws</th>
+	            <th>Continent</th>
+	            <th>Land Area (km^2)</th>
+	            <th>Border Length (km)</th>
 	          </tr>
 	        </thead>
 	        <tbody>
@@ -46,10 +44,8 @@ Wins Overall
 	                <tr>
 	                    <td>{{ record[0] }}</td>
 	                    <td>{{ record[1] }}</td>
-	                    <td>{{ record[5] }}</td>
 	                    <td>{{ record[2] }}</td>
 	                    <td>{{ record[3] }}</td>
-	                    <td>{{ record[4] }}</td>
 	                </tr>
 
 	            {% endfor %}
@@ -91,7 +87,7 @@ Wins Overall
 	    cb(matches);
 	  };
 	};
-	var countries = ['Algeria', 'Angola', 'Argentina', 'Australia', 'Austria', 'Belgium', 'Bolivia', 'Bosnia and Herzegovina', 'Brazil', 'Bulgaria', 'Cameroon', 'Canada', 'Chile', 'China PR', 'Colombia', 'Costa Rica', 'Croatia', 'Cuba', 'Czechoslovakia', 'Czech Republic', 'Denmark', 'Dutch East Indies', 'Ecuador', 'Egypt', 'El Salvador', 'England', 'France', 'German DR', 'Germany', 'Germany FR', 'Ghana', 'Greece', 'Haiti', 'Honduras', 'Hungary', 'Iran', 'Iraq', 'Israel', 'Italy', 'Ivory Coast', 'Jamaica', 'Japan', 'Korea DPR', 'Korea Republic', 'Kuwait', 'Mexico', 'Morocco', 'Netherlands', 'New Zealand', 'Nigeria', 'Northern Ireland', 'Norway', 'Paraguay', 'Peru', 'Poland', 'Portugal', 'Republic of Ireland', 'Romania', 'Russia', 'Saudi Arabia', 'Scotland', 'Senegal', 'Serbia', 'Serbia and Montenegro', 'Slovakia', 'Slovenia', 'South Africa', 'Soviet Union', 'Spain', 'Sweden', 'Switzerland', 'Togo', 'Trinidad and Tobago', 'Tunisia', 'Turkey', 'Ukraine', 'United Arab Emirates', 'Uruguay', 'USA', 'Wales', 'Yugoslavia', 'Zaire']
+	var countries = ['Algeria', 'Angola', 'Argentina', 'Australia', 'Austria', 'Belgium', 'Bolivia', 'Bosnia and Herzegovina', 'Brazil', 'Bulgaria', 'Cameroon', 'Canada', 'Chile', 'China', 'Colombia', 'Costa Rica', 'Croatia', 'Cuba', 'Democratic Republic of the Congo', 'Denmark', 'Ecuador', 'Egypt', 'El Salvador', 'France', 'Germany', 'Ghana', 'Greece', 'Haiti', 'Honduras', 'Hungary', 'Iceland', 'Iran', 'Iraq', 'Ireland', 'Israel', 'Italy', 'Ivory Coast', 'Jamaica', 'Japan', 'Kuwait', 'Mexico', 'Morocco', 'Netherlands', 'New Zealand', 'Nigeria', 'North Korea', 'Norway', 'Panama', 'Paraguay', 'Peru', 'Poland', 'Portugal', 'Qatar', 'Romania', 'Saudi Arabia', 'Senegal', 'Slovakia', 'Slovenia', 'South Africa', 'South Korea', 'Spain', 'Sweden', 'Switzerland', 'Togo', 'Trinidad and Tobago', 'Tunisia', 'Turkey', 'Ukraine', 'United Arab Emirates', 'United States', 'Uruguay'];
 
 	$('#countries .typeahead').typeahead(null, {
 	  name: 'countries',

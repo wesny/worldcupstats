@@ -1,233 +1,74 @@
 Country,Continent,Land_Area,Border_Length
-Aruba,Central America and Caribbean,180.0,39.3
-Antigua And Barbuda,Central America and Caribbean,442.6,31.9
 United Arab Emirates,Middle East,83600.0,1066.0
-Afghanistan,South Asia,652230.0,5987.0
 Algeria,Africa,2381741.0,6734.0
-Azerbaijan,Middle East,86600.0,2468.0
-Albania,Europe,28748.0,691.0
-Armenia,Middle East,29743.0,1570.0
-Andorra,Europe,468.0,118.0
 Angola,Africa,1246700.0,5369.0
-American Samoa,Australia-Oceania,199.0,25.5
 Argentina,South America,2780400.0,11968.0
 Australia,Australia-Oceania,7741220.0,38.7
 Austria,Europe,83871.0,2524.0
-Anguilla,Central America and Caribbean,91.0,34.8
-Akrotiri,Europe,123.0,48.0
-Bahrain,Middle East,760.0,32.3
-Barbados,Central America and Caribbean,430.0,38.6
-Botswana,Africa,581730.0,4347.15
-Bermuda,North America,54.0,43.4
 Belgium,Europe,30528.0,1297.0
-Bahamas,Central America and Caribbean,13880.0,32.0
-Bangladesh,South Asia,148460.0,4413.0
-Belize,Central America and Caribbean,22966.0,542.0
 Bosnia and Herzegovina,Europe,51197.0,1543.0
 Bolivia,South America,1098581.0,7252.0
-Burma,East & Southeast Asia,676578.0,6522.0
-Benin,Africa,112622.0,2123.0
-Belarus,Europe,207600.0,3642.0
-Solomon Islands,Australia-Oceania,28896.0,22.5
 Brazil,South America,8515770.0,16145.0
-Bhutan,South Asia,38394.0,1136.0
 Bulgaria,Europe,110879.0,1806.0
-Brunei,East & Southeast Asia,5765.0,266.0
-Burundi,Africa,27830.0,1140.0
 Canada,North America,9984670.0,8893.0
-Cambodia,East & Southeast Asia,181035.0,2530.0
-Curacao,Central America and Caribbean,444.0,36.1
-Chad,Africa,1.284,6406.0
-Sri Lanka,South Asia,65610.0,32.8
-"Congo, Republic Of The",Africa,342000.0,5008.0
-"Congo, Dem. Rep.",Africa,2344858.0,10481.0
+Democratic Republic of the Congo,Africa,2344858.0,10481.0
 China,East & Southeast Asia,9596960.0,22457.0
 Chile,South America,756102.0,7801.0
-Cayman Islands,Central America and Caribbean,264.0,40.0
 Cameroon,Africa,475440.0,5018.0
-Comoros,Africa,2235.0,19.9
 Colombia,South America,1138910.0,6672.0
-Northern Mariana Islands,Australia-Oceania,464.0,33.6
 Costa Rica,Central America and Caribbean,51100.0,661.0
-Central African Republic,Africa,622984.0,5920.0
 Cuba,Central America and Caribbean,110860.0,28.5
-Cabo Verde,Africa,4033.0,25.4
-Cook Islands,Australia-Oceania,236.0,36.6
-Cyprus,Europe,9251.0,156.0
 Denmark,Europe,43094.0,140.0
-Djibouti,Africa,23200.0,528.0
-Dominica,Central America and Caribbean,751.0,33.5
-Dominican Republic,Central America and Caribbean,48670.0,376.0
-Dhekelia,Europe,130.8,108.0
 Ecuador,South America,283561.0,2237.0
-European Union,Europe,4479968.0,13271.0
 Egypt,Africa,1001450.0,2612.0
 Ireland,Europe,70273.0,443.0
-Equatorial Guinea,Africa,28051.0,528.0
-Estonia,Europe,45228.0,657.0
-Eritrea,Africa,117600.0,1840.0
 El Salvador,Central America and Caribbean,21041.0,590.0
-Ethiopia,Africa,1104300.0,5925.0
-Czechia,Europe,78867.0,2143.0
-Finland,Europe,338145.0,2563.0
-Fiji,Australia-Oceania,18274.0,28.9
-"Micronesia, Federated States Of",Australia-Oceania,702.0,25.1
-Faroe Islands,Europe,1393.0,37.6
-French Polynesia,Australia-Oceania,4167.0,31.9
 France,Europe,643801.0,2751.0
-"Gambia, The",Africa,11300.0,749.0
-Gabon,Africa,267667.0,3261.0
-Georgia,Middle East,69700.0,1814.0
 Ghana,Africa,238533.0,2420.0
-Gibraltar,Europe,6.5,1.2
-Grenada,Central America and Caribbean,344.0,31.5
-Guernsey,Europe,78.0,43.8
-Greenland,North America,2166086.0,33.9
 Germany,Europe,357022.0,3714.0
-Guam,Australia-Oceania,544.0,29.0
 Greece,Europe,131957.0,1110.0
-Guatemala,Central America and Caribbean,108889.0,1667.0
-Guinea,Africa,245857.0,4046.0
-Guyana,South America,214969.0,2933.0
-Gaza Strip,Middle East,360.0,72.0
 Haiti,Central America and Caribbean,27750.0,376.0
-Hong Kong,East & Southeast Asia,1108.0,33.0
 Honduras,Central America and Caribbean,112090.0,1575.0
 Croatia,Europe,56594.0,2237.0
 Hungary,Europe,93028.0,2106.0
 Iceland,Europe,103000.0,36.5
-Indonesia,East & Southeast Asia,1904569.0,2958.0
-Isle Of Man,Europe,572.0,44.2
-India,South Asia,3287263.0,13888.0
 Iran,Middle East,1648195.0,5894.0
 Israel,Middle East,20770.0,1068.0
 Italy,Europe,301340.0,1836.4
-Cote D'Ivoire,Africa,322463.0,3458.0
+Ivory Coast,Africa,322463.0,3458.0
 Iraq,Middle East,438317.0,3809.0
 Japan,East & Southeast Asia,377915.0,47.3
-Jersey,Europe,116.0,38.0
 Jamaica,Central America and Caribbean,10991.0,26.0
-Jordan,Middle East,89342.0,1744.0
-Kenya,Africa,580367.0,3457.0
-Kyrgyzstan,Central Asia,199951.0,4573.0
 North Korea,East & Southeast Asia,120538.0,1607.0
-Kiribati,Australia-Oceania,811.0,24.6
 South Korea,East & Southeast Asia,99720.0,237.0
 Kuwait,Middle East,17818.0,475.0
-Kosovo,Europe,10887.0,714.0
-Kazakhstan,Central Asia,2724900.0,13364.0
-Laos,East & Southeast Asia,236800.0,5274.0
-Lebanon,Middle East,10400.0,484.0
-Latvia,Europe,64589.0,1370.0
-Lithuania,Europe,65300.0,1549.0
-Liberia,Africa,111369.0,1667.0
 Slovakia,Europe,49035.0,1611.0
-Liechtenstein,Europe,160.0,75.0
-Lesotho,Africa,30355.0,1106.0
-Luxembourg,Europe,2586.0,327.0
-Libya,Africa,1759540.0,4339.0
-Madagascar,Africa,587041.0,19.7
-Macau,East & Southeast Asia,28.2,3.0
-Moldova,Europe,33851.0,1885.0
-Mongolia,East & Southeast Asia,1564116.0,8082.0
-Montserrat,Central America and Caribbean,102.0,33.2
-Malawi,Africa,118484.0,2857.0
-Montenegro,Europe,13812.0,680.0
-Macedonia,Europe,25713.0,838.0
-Mali,Africa,1240192.0,7908.0
-Monaco,Europe,2.0,6.0
 Morocco,Africa,446550.0,2362.5
-Mauritius,Africa,2040.0,35.3
-Mauritania,Africa,1030700.0,5002.0
-Malta,Europe,316.0,41.8
-Oman,Middle East,309500.0,1561.0
-Maldives,South Asia,298.0,28.2
 Mexico,North America,1964375.0,4389.0
-Malaysia,East & Southeast Asia,329847.0,2742.0
-Mozambique,Africa,799380.0,4783.0
-New Caledonia,Australia-Oceania,18575.0,32.0
-Niger,Africa,1.267,5834.0
-Vanuatu,Australia-Oceania,12189.0,22.0
 Nigeria,Africa,923768.0,4477.0
 Netherlands,Europe,41543.0,1053.0
 Norway,Europe,323802.0,2566.0
-Nepal,South Asia,147181.0,3159.0
-Nauru,Australia-Oceania,21.0,26.4
-Suriname,South America,163820.0,1907.0
-Nicaragua,Central America and Caribbean,130370.0,1253.0
 New Zealand,Australia-Oceania,268838.0,37.9
-South Sudan,Africa,644329.0,6018.0
 Paraguay,South America,406752.0,4655.0
 Peru,South America,1285216.0,7062.0
-Pakistan,South Asia,796095.0,7257.0
 Poland,Europe,312685.0,3071.0
 Panama,Central America and Caribbean,75420.0,687.0
 Portugal,Europe,92090.0,1224.0
-Papua New Guinea,East & Southeast Asia,462840.0,824.0
-Palau,Australia-Oceania,459.0,33.4
-Guinea-Bissau,Africa,36125.0,762.0
 Qatar,Middle East,11586.0,87.0
-Serbia,Europe,77474.0,2322.0
-Marshall Islands,Australia-Oceania,181.0,22.9
-Saint Martin,Central America and Caribbean,54.4,16.0
 Romania,Europe,238391.0,2844.0
-Philippines,East & Southeast Asia,300000.0,23.5
-Puerto Rico,Central America and Caribbean,9104.0,41.5
 Russia,Central Asia,17098242.0,22408.0
-Rwanda,Africa,26338.0,930.0
 Saudi Arabia,Middle East,2149690.0,4272.0
-Saint Pierre And Miquelon,North America,242.0,46.5
-Saint Kitts And Nevis,Central America and Caribbean,261.0,35.0
-Seychelles,Africa,455.0,35.4
 South Africa,Africa,1219090.0,5244.0
 Senegal,Africa,196722.0,2684.0
-"Saint Helena, Ascension, And Tristan Da Cunha",Africa,394.0,41.9
 Slovenia,Europe,20273.0,1211.0
-Sint Maarten,Central America and Caribbean,34.0,16.0
-Sierra Leone,Africa,71740.0,1093.0
-San Marino,Europe,61.0,37.0
-Singapore,East & Southeast Asia,719.2,34.6
-Somalia,Africa,637657.0,2385.0
 Spain,Europe,505370.0,1952.7
-Saint Lucia,Central America and Caribbean,616.0,34.8
-Sudan,Africa,1861484.0,6819.0
 Sweden,Europe,450295.0,2211.0
-Syria,Middle East,185180.0,2363.0
 Switzerland,Europe,41277.0,1770.0
-Saint Barthelemy,Central America and Caribbean,25.0,44.1
 Trinidad and Tobago,Central America and Caribbean,5128.0,36.0
-Thailand,East & Southeast Asia,513120.0,5673.0
-Tajikistan,Central Asia,144100.0,4130.0
-Turks And Caicos Islands,Central America and Caribbean,948.0,33.3
-Tonga,Australia-Oceania,747.0,23.0
 Togo,Africa,56785.0,1880.0
-Sao Tome And Principe,Africa,964.0,18.4
 Tunisia,Africa,163610.0,1495.0
-Timor-Leste,East & Southeast Asia,14874.0,253.0
 Turkey,Middle East,783562.0,2816.0
-Tuvalu,Australia-Oceania,26.0,25.7
-Taiwan,East & Southeast Asia,35980.0,40.7
-Turkmenistan,Central Asia,488100.0,4158.0
-Tanzania,Africa,947300.0,4161.0
-Uganda,Africa,241038.0,2729.0
 United Kingdom,Europe,243610.0,443.0
 Ukraine,Europe,603550.0,5618.0
 United States,North America,9833517.0,12048.0
-Burkina Faso,Africa,274200.0,3611.0
 Uruguay,South America,176215.0,1591.0
-Uzbekistan,Central Asia,447400.0,6893.0
-Saint Vincent And The Grenadines,Central America and Caribbean,389.0,33.6
-Venezuela,South America,912050.0,5267.0
-British Virgin Islands,Central America and Caribbean,151.0,36.5
-Vietnam,East & Southeast Asia,331210.0,4616.0
-Virgin Islands,Central America and Caribbean,1910.0,41.0
-Holy See (Vatican City),Europe,0.44,3.4
-Namibia,Africa,824292.0,4220.0
-West Bank,Middle East,5860.0,478.0
-Wallis And Futuna,Australia-Oceania,142.0,32.2
-Western Sahara,Africa,266000.0,2049.0
-Samoa,Australia-Oceania,2831.0,24.4
-Swaziland,Africa,17364.0,546.0
-Yemen,Middle East,527968.0,1601.0
-Zambia,Africa,752618.0,6043.15
-Zimbabwe,Africa,390757.0,3229.0

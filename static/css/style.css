@@ -5,3 +5,8 @@ body {
     color: #333;
     font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
+
+.scrollable-dropdown-menu .tt-dropdown-menu {
+  max-height: 150px;
+  overflow-y: auto;
+}

@@ -16,8 +16,8 @@ Wins per Year
 
   <div class="container">
   	<div class="jumbotron text-center">
-  	 <h1>Wins By Year</h1>
-	  <form action="/wins_year" method="GET">
+  	 <h1>Country Information By Year</h1>
+	  <form action="/country_year" method="GET">
 	  	<div class="row text-center">
 	  		<div class="col-sm-3 offset-sm-3">
 		  		<label for="country">Country</label>
@@ -42,10 +42,13 @@ Wins per Year
 	    	<thead>
 	          <tr>
 	            <th>Country</th>
+	            <th>Country Code</th>
 	            <th>Year</th>
-	            <th>Wins</th>
-	            <th>Losses</th>
-	            <th>Draws</th>
+	            <th>GDP</th>
+	            <th>Population</th>
+	            <th>Life Expectancy</th>
+	            <th>Urbanization Percentage</th>
+	            <th>Per Capita GDP</th>
 	          </tr>
 	        </thead>
 	        <tbody>
@@ -57,6 +60,9 @@ Wins per Year
 	                    <td>{{ record[2] }}</td>
 	                    <td>{{ record[3] }}</td>
 	                    <td>{{ record[4] }}</td>
+	                    <td>{{ record[5] }}</td>
+	                    <td>{{ record[6] }}</td>
+	                    <td>{{ record[7] }}</td>
 	                </tr>
 
 	            {% endfor %}
@@ -98,9 +104,9 @@ Wins per Year
 	    cb(matches);
 	  };
 	};
-	var countries = ['Algeria', 'Angola', 'Argentina', 'Australia', 'Austria', 'Belgium', 'Bolivia', 'Bosnia and Herzegovina', 'Brazil', 'Bulgaria', 'Cameroon', 'Canada', 'Chile', 'China PR', 'Colombia', 'Costa Rica', 'Croatia', 'Cuba', 'Czechoslovakia', 'Czech Republic', 'Denmark', 'Dutch East Indies', 'Ecuador', 'Egypt', 'El Salvador', 'England', 'France', 'German DR', 'Germany', 'Germany FR', 'Ghana', 'Greece', 'Haiti', 'Honduras', 'Hungary', 'Iran', 'Iraq', 'Israel', 'Italy', 'Ivory Coast', 'Jamaica', 'Japan', 'Korea DPR', 'Korea Republic', 'Kuwait', 'Mexico', 'Morocco', 'Netherlands', 'New Zealand', 'Nigeria', 'Northern Ireland', 'Norway', 'Paraguay', 'Peru', 'Poland', 'Portugal', 'Republic of Ireland', 'Romania', 'Russia', 'Saudi Arabia', 'Scotland', 'Senegal', 'Serbia', 'Serbia and Montenegro', 'Slovakia', 'Slovenia', 'South Africa', 'Soviet Union', 'Spain', 'Sweden', 'Switzerland', 'Togo', 'Trinidad and Tobago', 'Tunisia', 'Turkey', 'Ukraine', 'United Arab Emirates', 'Uruguay', 'USA', 'Wales', 'Yugoslavia', 'Zaire']
+	var countries = ['Algeria', 'Angola', 'Argentina', 'Australia', 'Austria', 'Belgium', 'Bolivia', 'Bosnia and Herzegovina', 'Brazil', 'Bulgaria', 'Cameroon', 'Canada', 'Chile', 'China', 'Colombia', 'Costa Rica', 'Croatia', 'Cuba', 'Democratic Republic of the Congo', 'Denmark', 'Ecuador', 'Egypt', 'El Salvador', 'France', 'Germany', 'Ghana', 'Greece', 'Haiti', 'Honduras', 'Hungary', 'Iceland', 'Iran', 'Iraq', 'Ireland', 'Israel', 'Italy', 'Ivory Coast', 'Jamaica', 'Japan', 'Kuwait', 'Mexico', 'Morocco', 'Netherlands', 'New Zealand', 'Nigeria', 'North Korea', 'Norway', 'Panama', 'Paraguay', 'Peru', 'Poland', 'Portugal', 'Qatar', 'Romania', 'Saudi Arabia', 'Senegal', 'Slovakia', 'Slovenia', 'South Africa', 'South Korea', 'Spain', 'Sweden', 'Switzerland', 'Togo', 'Trinidad and Tobago', 'Tunisia', 'Turkey', 'Ukraine', 'United Arab Emirates', 'United States', 'Uruguay'];
 
-	var years = ['1930', '1934', '1938', '1950', '1954', '1958', '1962', '1966', '1970', '1974', '1978', '1982', '1986', '1990', '1994', '1998', '2002', '2006', '2010', '2014']
+	var years = ['1960', '1961', '1962', '1963', '1964', '1965', '1966', '1967', '1968', '1969', '1970', '1971', '1972', '1973', '1974', '1975', '1976', '1977', '1978', '1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016'];
 	$('#countries .typeahead').typeahead(null, {
 	  name: 'countries',
 	  limit: 100,

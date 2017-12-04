@@ -1,5 +1,6 @@
 import csv
 import copy
+import numpy as np
 from os import listdir
 from os.path import isfile, join
 import string
@@ -40,7 +41,7 @@ class CIA_Scrape():
             if parsed.countryData != None:
                 outTbl.append(parsed.countryData)
 
-        print outTbl
+        #print outTbl
 
         #Add table headers
         outTbl = [["Country", "Continent", "Land_Area", "Border_Length"]] + outTbl
@@ -65,19 +66,6 @@ class Parse_CIA_Country_Data():
         nameEnKey = "</span>"
         name = self.findString(d, nameStKey, nameEnKey).title()
 
-        #Check to see if country is of interest
-        excludedCountries = ["Coral Sea Islands", "Baker Island", "French Southern And Antarctic Lands",
-                            "Paracel Islands", "Spratly Islands", "United States Pacific Island Wildlife Refuges", 
-                            "   World", "Wake Island", "Tokelau", "Svalbard", "Palmyra Atoll", "Midway Islands", 
-                            "Niue", "Norfolk Island", "Pitcairn Islands", "Christmas Island", "Kingman Reef", 
-                            "South Georgia And South Sandwich Islands", "Johnston Atoll", "Jan Mayen", "Clipperton Island",
-                            "Howland Island", "Heard Island And Mcdonald Islands", "Falkland Islands (Islas Malvinas)", "Jarvis Island",
-                            "Cocos (Keeling) Islands", "Bouvet Island", "Navassa Island", "Antarctica", "Ashmore And Cartier Islands"]
-
-        if name in excludedCountries or "Ocean" in name:
-            self.countryData = None
-            return
-
         #Find country continent
         continentStKey = "dark\">"
         continentEnKey = "  <strong>"
@@ -97,6 +85,7 @@ class Parse_CIA_Country_Data():
         borderLength = self.findStringInRegion(d, regionKey, stKey, endKey)
         borderLength = borderLength.replace(',', '')
 
+
         #Standardize names
         if name == "Korea, South":
             name = "South Korea"
@@ -106,12 +95,33 @@ class Parse_CIA_Country_Data():
             name = "Bosnia and Herzegovina"
         elif name == "Trinidad And Tobago":
             name = "Trinidad and Tobago"
-        elif name == "Ivory Coast":
-            name = "Cote d'Ivoire"
-        elif name == "Congo, Democratic Republic Of The":
-            name = "Congo, Dem. Rep."
+        elif name == "Cote D'Ivoire" or name == "Cote d'Ivoire":
+            name = "Ivory Coast"
+        elif name == "Congo, Democratic Republic Of The" or name == "Congo, Dem. Rep.":
+            name = "Democratic Republic of the Congo"
         elif name == "Bahamas, The":
             name = "Bahamas"
+
+        #Check to see if country is of interest
+        pathCL = "./OutputTables/country_list_p.txt"
+
+        f = open(pathCL, 'r')
+        lines = f.read().split("\n")
+        f.close()
+
+        c_list = []
+        for line in lines:
+            #print line
+            countries = line.split(", ")
+            for i in range(len(countries)):
+                countries[i] = countries[i].lstrip()
+            #print countries
+            c_list += countries
+        c_list = np.array(c_list)
+
+        if name not in c_list:
+            self.countryData = None
+            return
 
         self.countryData = [name, continent, float(landArea), float(borderLength)]
 
@@ -154,6 +164,7 @@ class Reformat_WB_Data():
         outTbl = [["Country", "Country Code", "Date", "GDP", "Population", "Life Expectancy", "Urbanization Percentage", "Per Capita GDP"]] + \
             outTbl
 
+
         #Standardize names
         for i in range(len(outTbl)):
             if outTbl[i][0] == "Egypt, Arab Rep.":
@@ -165,14 +176,42 @@ class Reformat_WB_Data():
             elif outTbl[i][0] == 'Iran, Islamic Rep.':
                 outTbl[i][0] = "Iran"
             elif outTbl[i][0] == 'Slovak Republic':
-                outTbl[i][0] == 'Slovakia'
+                outTbl[i][0] = 'Slovakia'
+            elif outTbl[i][0] == "Latin America & the Caribbean (IDA & IBRD countries)":
+                outTbl[i][0] = "Latin America & the Caribbean"
+            elif outTbl[i][0] == "Cote D'Ivoire" or outTbl[i][0] == "Cote d'Ivoire":
+                outTbl[i][0] = "Ivory Coast"
+            elif outTbl[i][0] == "Congo, Democratic Republic Of The" or outTbl[i][0] == "Congo, Dem. Rep.":
+                outTbl[i][0] = "Democratic Republic of the Congo"
 
-        self.printTable(outTbl)
+                
+        #Discard unwanted countries
+        pathCL = "./OutputTables/country_list_p.txt"
+        c_list = []
+
+        f = open(pathCL, 'r')
+        lines = f.read().split("\n")
+        f.close()
+
+        for line in lines:
+            #print line
+            countries = line.split(", ")
+            for i in range(len(countries)):
+                countries[i] = countries[i].lstrip()
+            c_list += countries
+        c_list = np.array(c_list)
+
+        prunedTbl = []
+        for i in range(len(outTbl)):
+            if outTbl[i][0] in c_list:
+                prunedTbl.append(outTbl[i])
+
+        #self.printTable(outTbl)
         
         #Write table to output
         f = open("./OutputTables/country_year.csv","w")
         out = csv.writer(f, delimiter=',')
-        out.writerows(outTbl)
+        out.writerows(prunedTbl)
         f.close()
 
         
@@ -223,8 +262,7 @@ class Reformat_WB_Data():
         for row in tbl:
             print row
 
-                    
-    
-
+            
 if __name__ == '__main__':
     CIA_Scrape()
+    Reformat_WB_Data()
