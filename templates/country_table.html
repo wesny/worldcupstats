@@ -19,94 +19,176 @@ canvas {
 = endblock
 
 = block content
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Large modal</button>
+    <button type="button" class="btn btn-primary" id="testbutton">Large modal</button>
 
-    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div id="graphmodal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                    <h5 class="modal-title">{{d["country"]}} World Cup Success by Year</h5>
+                    <h5 id="graph-header" class="modal-title"></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
-          <div style="width: 100%">
-              <canvas id="canvas"></canvas>
+          <div id="graphdiv" style="width: 100%">
+              <canvas id="graphcanvas"></canvas>
           </div>
-          <button id="randomizeData">Randomize Data</button>
           <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
         </div>
       </div>
     </div>
+= endblock
+
+= block footer
     <script>
-        var chartData = {
-            labels: {{d['years']}},
-            datasets: [{
-                type: 'line',
-                label: 'Wins',
-                yAxisID: "y-axis-1",
-                borderColor: window.chartColors.blue,
-                borderWidth: 2,
-                fill: false,
-                data: {{d['wins']}}
-
-            }, {
-                type: 'line',
-                label: 'Dataset 2',
-                yAxisID: "y-axis-2",
-                backgroundColor: window.chartColors.red,
-                data: {{d['per_capita_gdp']}},
-                borderColor: 'white',
-                borderWidth: 2
-            }]
-
-        };
-        window.onload = function() {
-            var ctx = document.getElementById("canvas").getContext("2d");
-            window.myMixedChart = new Chart(ctx, {
-                type: 'bar',
-                data: chartData,
-                options: {
-                    responsive: true,
-                    title: {
-                        display: false,
-                        text: 'Chart.js Combo Bar Line Chart'
+    $(document).ready(function () {
+        window.getGraphData = function (country){
+            $.getJSON("/getgraphdata", {country: country}, function(data){
+                var chartData = {
+                    labels: data['years'],
+                    datasets: [
+                    {
+                        type: 'line',
+                        label: 'Per Capita GDP',
+                        yAxisID: "y-axis-1",
+                        borderColor: window.chartColors.blue,
+                        fill: false,
+                        borderWidth: 2,
+                        data: data['per_capita_gdp']
                     },
-                    tooltips: {
-                        mode: 'index',
-                        intersect: true
+                    {
+                        type: 'line',
+                        label: 'Population',
+                        yAxisID: "y-axis-2",
+                        borderColor: window.chartColors.green,
+                        fill: false,
+                        borderWidth: 2,
+                        data: data['population']
                     },
-                    scales: {
-                        yAxes: [{
-                            type: "linear", // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
-                            display: true,
-                            position: "left",
-                            id: "y-axis-1",
-                        }, {
-                            type: "linear", // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
-                            display: true,
-                            position: "right",
-                            id: "y-axis-2",
+                    {
+                        type: 'line',
+                        label: 'Life Expectency',
+                        yAxisID: "y-axis-3",
+                        borderColor: window.chartColors.orange,
+                        fill: false,
+                        borderWidth: 2,
+                        data: data['life_expectency']
+                    },
+                    {
+                        type: 'bar',
+                        label: 'Wins',
+                        yAxisID: "y-axis-4",
+                        backgroundColor: window.chartColors.red,
+                        data: data['wins'],
+                        borderColor: 'white',
+                        borderWidth: 2
+                    },]
+                };
+                $("#graphcanvas" ).remove();
+                $("#graphdiv").append('<canvas id="graphcanvas"></canvas>');
+                $("#graph-header").text(data["country"] + " World Cup Success by Year vs Country Data");
+                var ctx = document.getElementById("graphcanvas").getContext("2d");
+                window.myMixedChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: chartData,
+                    options: {
+                        responsive: true,
+                        title: {
+                            display: false,
+                            text: 'Chart.js Combo Bar Line Chart'
+                        },
+                        tooltips: {
+                            mode: 'index',
+                            intersect: true
+                        },
+                        scales: {
+                            yAxes: [ {
+                                type: "linear", // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+                                    display: true,
+                                    position: "right",
+                                id: "y-axis-1",
 
-                            // grid line settings
-                            gridLines: {
-                                drawOnChartArea: false, // only want the grid lines for one axis to show up
-                            },
-                        }],
+                                // grid line settings
+                                gridLines: {
+                                    drawOnChartArea: false, // only want the grid lines for one axis to show up
+                                },
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: 'Per Capita GDP'
+                                },
+                                ticks: {
+                                    // Include a dollar sign in the ticks
+                                    callback: function(value, index, values) {
+                                        var parts = value.toString().split(".");
+                                        parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                                        return '$' + parts.join(".");
+                                    }
+                                }
+                            }, {
+                                type: "linear", // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+                                    display: true,
+                                    position: "right",
+                                id: "y-axis-2",
+
+                                // grid line settings
+                                gridLines: {
+                                    drawOnChartArea: false, // only want the grid lines for one axis to show up
+                                },
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: 'Population'
+                                },
+                                ticks: {
+                                    // Include a dollar sign in the ticks
+                                    callback: function(value, index, values) {
+                                        var parts = value.toString().split(".");
+                                        parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                                        return parts.join(".");
+                                    }
+                                }
+                            },{
+                                type: "linear", // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+                                display: true,
+                                position: "right",
+                                id: "y-axis-3",
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: 'Life Expectency'
+                                }
+                            }, {
+                                type: "linear", // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+                                display: true,
+                                position: "left",
+                                id: "y-axis-4",
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: 'World Cup Wins'
+                                }
+                            },],
+                        },
+                        legend: {
+                            onClick: function(event, legendItem) {
+                                //get the index of the clicked legend
+                                var index = legendItem.datasetIndex;
+                                //toggle chosen dataset's visibility
+                                window.myMixedChart.data.datasets[index].hidden = 
+                                    !window.myMixedChart.data.datasets[index].hidden;
+                                //toggle the related labels' visibility
+                                window.myMixedChart.options.scales.yAxes[index].display =                 
+                                    !window.myMixedChart.options.scales.yAxes[index].display;
+                                window.myMixedChart.update();
+                            }
+                        }
                     }
-                }
-            });
-        };
-
-        document.getElementById('randomizeData').addEventListener('click', function() {
-            chartData.datasets.forEach(function(dataset) {
-                dataset.data = dataset.data.map(function() {
-                    return randomScalingFactor();
+                    });
+                    $('#graphmodal').modal('show'); 
                 });
+            }
+            $("#testbutton").click(function() {
+                getGraphData("France");
             });
-            window.myMixedChart.update();
-        });
+    });
     </script>
 = endblock

@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 from hashlib import sha512
 import os
 import psycopg2
@@ -24,6 +24,11 @@ cup_years = [1930, 1934, 1938, 1950, 1954, 1958, 1962, 1966, 1970, 1974, 1978, 1
 def home():
     d = create_graph_data("Germany")
     return render_template("country_table.html", d=d)
+
+@app.route("/getgraphdata")
+def getgraphdata():
+    country = request.args['country']
+    return jsonify(create_graph_data(country))
 
 @app.route("/worldmap")
 def world_map():
@@ -107,17 +112,25 @@ def create_graph_data(country):
     ret_d['country'] = country
     capita_gdp_db = get_stats(country)
     per_capita_gdp = []
+    population = []
+    life_expectancy = []
     i = 0
     j = 0
     while i < len(cup_years):
         if j < len(capita_gdp_db) and cup_years[i] == int(capita_gdp_db[j][2]):
             per_capita_gdp.append(capita_gdp_db[j][7])
+            population.append(capita_gdp_db[j][4])
+            life_expectancy.append(capita_gdp_db[j][5])
             i += 1
             j += 1
         else:
             per_capita_gdp.append(None)
+            population.append(None)
+            life_expectancy.append(None)
             i += 1
-    ret_d['per_capita_gdp'] = json.dumps(per_capita_gdp)
+    ret_d['per_capita_gdp'] = per_capita_gdp
+    ret_d['population'] = population
+    ret_d['life_expectency'] = life_expectancy
     return ret_d
 
 @app.route("/wins_overall")
