@@ -11,9 +11,27 @@ World Cup Stats
 
 = block content
 <div id="regions_div" style="width: 900px; height: 500px;"></div>
-<p id="demo"></p>
-<button id="Population" type="button">Population</button>
-<button id="GDP" type="button">GDP</button>
+
+<input type="radio" name="rad_group" id="example1" value="Example 1" checked="checked"/>
+<label for="example1">Population</label>
+<input type="radio" name="rad_group" id="example2" value="Example 2" />
+<label for="example2">GDP</label>
+<input type="radio" name="rad_group" id="example3" value="Example 3" />
+<label for="example3">Life Expectancy</label>
+<input type="radio" name="rad_group" id="example4" value="Example 4" />
+<label for="example4">Urbanization Percentage</label>
+<input type="radio" name="rad_group" id="example5" value="Example 5" />
+<label for="example5">Per Capita GDP</label>
+
+<p id="country_label"></p>
+<p id="year">Through Year: {{ year }}</p>
+<p id="cup_wins"></p>
+<p id="appearances"></p>
+<p id="wins"></p>
+<p id="losses"></p>
+<p id="draws"></p>
+
+
 <script type="text/javascript">
   google.charts.load('current', {
     'packages':['geochart'],
@@ -25,9 +43,62 @@ World Cup Stats
 
   type = "Population"
 
+  function generateData() {
+    var arr = [['Country', type] ];
+    switch(type) {
+      case "Population":
+        arr.push(['United States', 50]);
+        break;
+      case "GDP":
+        arr.push(['United States', 100000]);
+        break;
+      case "Life_Expectancy":
+        arr.push(['United States', 50]);
+        break;
+      case "Urbanization_Percentage":
+        arr.push(['United States', 50]);
+        break;
+      case "Per_Capita_GDP":
+        arr.push(['United States', 1000]);
+        break;
+      default:
+        arr.push(['United States', 50]);
+      }
+
+    
+    {% for record in country_year_data: %}
+
+      country_name = '{{ record[0] }}';
+      gdp = '{{ record[3] }}'
+      pop = '{{ record[4] }}'
+      life_expec = '{{ record[5] }}'
+      urb_per = '{{ record[6] }}'
+      per_cap_gdp = '{{ record[7] }}'
+
+      if((type === "GDP") && !(gdp === "None")) {
+        arr.push([country_name, gdp])
+      }
+      else if ((type === "Population") && !(pop === "None"))  {
+        arr.push([country_name, pop])
+      }
+      else if ((type === "Life_Expectancy") && !(life_expec === "None")) {
+        arr.push([country_name, life_expec])
+      }
+      else if ((type === "Urbanization_Percentage") && !(urb_per === "None")) {
+        arr.push([country_name, urb_per])
+      }
+      else if ((type === "Per_Capita_GDP") && !(per_cap_gdp === "None")) {
+        arr.push([country_name, per_cap_gdp])
+      }
+    {% endfor %}
+
+    return google.visualization.arrayToDataTable(arr);
+  }
+
   function drawRegionsMap() {
+    /*
     var data = google.visualization.arrayToDataTable([
-      ['Country', 'Popularity'],
+      ['Country', type],
       ['Germany', 200],
       ['United States', 300],
       ['Brazil', 400],
@@ -37,7 +108,7 @@ World Cup Stats
     ]);
 
     var data2 = google.visualization.arrayToDataTable([
-      ['Country', 'Popularity'],
+      ['Country', type],
       ['Germany', 200],
       ['United States', 1000],
       ['Brazil', 400],
@@ -45,11 +116,18 @@ World Cup Stats
       ['France', 600],
       ['Russia', 100]
     ]);
+    */
+
+    //var dataForView = generateData();
+    var data = generateData();
+
 
     var options = {};
 
     var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+    chart.draw(data, options);
 
+    /*
     switch(type) {
       case "Population":
         chart.draw(data, options);
@@ -57,9 +135,19 @@ World Cup Stats
       case "GDP":
         chart.draw(data2, options);
         break;
+      case "Life_Expectancy":
+        chart.draw(data3, options);
+        break;
+      case "Urbanization_Percentage":
+        chart.draw(data4, options);
+        break;
+      case "Per_Capita_GDP":
+        chart.draw(data5, options);
+        break;
       default:
-        chart.draw(data2, options);
+        chart.draw(data1, options);
     }
+    */
 
     // Handling Country Selection
     google.visualization.events.addListener(chart, 'select', function () {
@@ -74,33 +162,88 @@ World Cup Stats
   }
 
   function displayCountryData(country) {
-    document.getElementById("demo").innerHTML = country;
+    document.getElementById("country_label").innerHTML = "Country: " + country;
+    countryToDisplay = country
+    {% for record in country_win_data: %}
 
+      country_name = '{{ record[0] }}';
+      cup_wins = '{{ record[1] }}'
+      appearances = '{{ record[2] }}'
+      wins = '{{ record[3] }}'
+      losses = '{{ record[4] }}'
+      draws = '{{ record[5] }}'
+
+      if(country_name === country) {
+        document.getElementById("cup_wins").innerHTML = "Cup Wins: " + cup_wins;
+        document.getElementById("appearances").innerHTML = "Appearances: " + appearances;
+        document.getElementById("wins").innerHTML = "Match Wins: " + wins;
+        document.getElementById("losses").innerHTML = "Match Losses: " + losses;
+        document.getElementById("draws").innerHTML = "Match Draws: " + draws;
+      }
+
+    {% endfor %}
   }
 
-  // Handling Button Clicks
-  m1Button = document.getElementById("Population")
-  m2Button = document.getElementById("GDP")
+  var ex1 = document.getElementById('example1');
+  var ex2 = document.getElementById('example2');
+  var ex3 = document.getElementById('example3');
+  var ex4 = document.getElementById('example4');
+  var ex5 = document.getElementById('example5');
 
-  m1Button .addEventListener("click", drawPop);
+  ex1.onclick = drawPop;
+  ex2.onclick = drawGDP;
+  ex3.onclick = drawLifeExpec;
+  ex4.onclick = drawUrban;
+  ex5.onclick = drawPerCapGDP;
+  //ex1.addEventListener("click", drawPop);
+  //ex2.addEventListener("click", drawMetric2);
+
+
+  // Handling Button Clicks
+  //m1Button = document.getElementById("Population")
+  //m2Button = document.getElementById("GDP")
+
+  //m1Button .addEventListener("click", drawPop);
+
+  //m2Button.addEventListener("click", drawMetric2);
   function drawPop() {
-    m1Button .innerHTML = "**Population**";
-    m2Button.innerHTML = "GDP";
+    //m1Button .innerHTML = "**Population**";
+    //m2Button.innerHTML = "GDP";
 
     type = "Population"
     drawRegionsMap()
   }
 
-  m2Button.addEventListener("click", drawMetric2);
-
-  function drawMetric2() {
-    m2Button.innerHTML = "**GDP**";
-    m1Button.innerHTML = "Population";
+  function drawGDP() {
+    //m2Button.innerHTML = "**GDP**";
+    //1Button.innerHTML = "Population";
     type = "GDP"
     drawRegionsMap()
   }
+
+  function drawLifeExpec() {
+    //m2Button.innerHTML = "**GDP**";
+    //1Button.innerHTML = "Population";
+    type = "Life_Expectancy"
+    drawRegionsMap()
+  }
+
+  function drawUrban() {
+    //m2Button.innerHTML = "**GDP**";
+    //1Button.innerHTML = "Population";
+    type = "Urbanization_Percentage"
+    drawRegionsMap()
+  }
+
+  function drawPerCapGDP() {
+    //m2Button.innerHTML = "**GDP**";
+    //1Button.innerHTML = "Population";
+    type = "Per_Capita_GDP"
+    drawRegionsMap()
+  }
+
 </script>
-<button type="button" class="btn btn-primary" id="testbutton">Test Button</button>
+<button type="button" class="btn btn-primary" id="testbutton">Graph Visualization</button>
 
 <div id="graphmodal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
@@ -133,6 +276,8 @@ canvas {
 }
 </style>
 <script>
+countryToDisplay = "Germany"
+
 $(document).ready(function () {
     window.getGraphData = function (country){
         $.getJSON("/getgraphdata", {country: country}, function(data){
@@ -277,7 +422,7 @@ $(document).ready(function () {
             });
         }
         $("#testbutton").click(function() {
-            getGraphData("France");
+            getGraphData(countryToDisplay);
         });
 });
 </script>
