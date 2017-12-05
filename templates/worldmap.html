@@ -47,25 +47,28 @@ World Cup Stats
           </li>
           </ul>
           </div>
-          <div class="card-block">
-          <h3 class="text-center card-title">Country Information</h3>
-          <div id="placeholder">
-            <p class="card-text">Please select a country to show statistics.</p>
+          <div class="card-block" style="height:500px;">
+            <div class="container pt-3">
+              <h3 class="text-center card-title">Country Information</h3>
+              <h5 class="text-center card-title">Through Year: {{ year }}</h5>
+              <div id="placeholder">
+                <p class="card-text pt-2">Please select a valid country to show statistics.</p>
+              </div>
+            </div>
+          <div id="countryinfo" style="display:none;">
+            <ul class="list-group list-group-flush">
+              <h4 id="country_label" class="list-group-item"></h4>
+              <!-- <h6 id="cup_wins" class="list-group-item" style="border-top:0px; margin-top:-14px;"></h6> -->
+              <h6 id="appearances" class="list-group-item" style="border-top:0px; margin-top:-10px;"></h6>
+              <li id="cup_wins" class="list-group-item list-group-item-info"></li>
+              <li id="wins" class="list-group-item list-group-item-success"></li>
+              <li id="draws" class="list-group-item list-group-item-warning"></li>
+              <li id="losses" class="list-group-item list-group-item-danger"></li>
+            </ul>
+            <div id="wrapper" class="pt-4">
+              <button type="button" style="margin: 0 auto;" class="btn btn-primary" id="testbutton">Graph Visualization</button>
+            </div>
           </div>
-          <div id="countryinfo" style="display: none;">
-          <ul class="list-group list-group-flush">
-            <li id="country_label" class="list-group-item"></li>
-            <li id="year" class="list-group-item">Through Year: {{ year }}</li>
-            <li id="cup_wins" class="list-group-item"></li>
-            <li id="appearances" class="list-group-item"></li>
-            <li id="wins" class="list-group-item"></li>
-            <li id="losses" class="list-group-item"></li>
-            <li id="draws" class="list-group-item"></li>
-          </ul>
-          <div id="wrapper">
-        <button type="button" style="margin: 0 auto;" class="btn btn-primary" id="testbutton">Graph Visualization</button>
-      </div>
-    </div>
         </div>
       </div>
     </div><!--/row-->
@@ -336,7 +339,7 @@ $(document).ready(function () {
   }
 
   function displayCountryData(country) {
-    document.getElementById("country_label").innerHTML = "Country: " + country;
+    document.getElementById("country_label").innerHTML = country;
     document.getElementById("cup_wins").innerHTML = "";
     document.getElementById("appearances").innerHTML = "";
     document.getElementById("wins").innerHTML = "";
@@ -351,12 +354,13 @@ $(document).ready(function () {
 
       country_name = '{{ record[0] }}';
       cup_wins = '{{ record[1] }}'
-      appearances = '{{ record[2] }}'
-      wins = '{{ record[3] }}'
-      losses = '{{ record[4] }}'
-      draws = '{{ record[5] }}'
+      appearances = '{{ record[5] }}'
+      wins = '{{ record[2] }}'
+      losses = '{{ record[3] }}'
+      draws = '{{ record[4] }}'
 
       if(country_name === country) {
+
         document.getElementById("cup_wins").innerHTML = "Cup Wins: " + cup_wins;
         document.getElementById("appearances").innerHTML = "Appearances: " + appearances;
         document.getElementById("wins").innerHTML = "Match Wins: " + wins;
