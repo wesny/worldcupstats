@@ -41,22 +41,41 @@ def getgraphdata():
 def world_cup():
     # print('World cup')
 
-    if(request.args):
+    if request.args:
+    	if request.args['year']:
+    		records = get_world_cups(request.args['year'])
+    		return render_template("worldcups.html", year=request.args['year'],records=records)
 
-        print(request.args['year'])
+    	else:
+    		records = get_world_cups(request.args['year'])
+    		return render_template("worldcups.html", year=request.args['year'],records=records)
 
-        cur.execute("SELECT * FROM worldcup WHERE year = '"+str(request.args['year'])+"';")
-        records = cur.fetchall()
+        # print(request.args['year'])
+
+        # cur.execute("SELECT * FROM worldcup WHERE year = '"+str(request.args['year'])+"';")
+        # records = cur.fetchall()
         
-        if len(records) > 0:
-            print('Records')
-            records = records[0]
-            return render_template("worldcups.html", year=request.args['year'], winner=records[1], runnerup=records[2],third=records[3],fourth=records[4])
-        else:
-            print('No cup!')
-            return render_template("worldcups.html", year=request.args['year'], nocup=True)
+        # if len(records) > 0:
+        #     print('Records')
+        #     records = records[0]
+        #     return render_template("worldcups.html", year=request.args['year'], winner=records[1], runnerup=records[2],third=records[3],fourth=records[4])
+        # else:
+        #     print('No cup!')
+        #     return render_template("worldcups.html", year=request.args['year'], nocup=True)
     else:
-        return render_template("worldcups.html")
+    	records = get_world_cups(0)
+    	print('here')
+        return render_template("worldcups.html", year='',records=records)
+
+def get_world_cups(year):
+	if year:
+		cur.execute("SELECT * FROM worldcup WHERE year = '"+year+"';")
+		records = cur.fetchall()
+		return records
+	else:
+		cur.execute("SELECT * FROM worldcup ORDER BY year")
+		records = cur.fetchall()
+		return records
 
 @app.route("/wins_year")
 def wins_year():

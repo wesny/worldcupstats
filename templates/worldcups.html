@@ -6,12 +6,57 @@ World Cups
 = endblock
 
 = block head
+<link rel="stylesheet" href="/static/css/typeahead.css">
 = endblock
 
 
 
 = block content
-  <h1>World Cups</h1>
+  <div class="container">
+  	<div class="jumbotron text-center">
+  	 <h1>World Cups</h1>
+	  <form action="/worldcups" method="GET">
+	  	<div class="form-group">
+	  		<label class="col-form-label" for="year">Year</label>
+	  		<div id="years" class="scrollable-dropdown-menu">
+	  			<input class="form-control typeahead" type="text" name="year" value="{{ year }}" placeholder="Year">
+	  		</div>
+	  	</div>
+	  	<button class="btn btn-primary">Search</button>
+	  </form>
+	</div>
+  	<div class="row">
+	  	<table class="table table-striped">
+
+
+	    	<thead>
+	          <tr>
+	            <th>Year</th>
+	            <th>Winner</th>
+	            <th>Runner-Up</th>
+	            <th>Third</th>
+	            <th>Fourth</th>
+	          </tr>
+	        </thead>
+	        <tbody>
+	            {% for record in records: %}
+
+	                <tr>
+	                    <td>{{ record[0] }}</td>
+	                    <td>{{ record[1] }}</td>
+	                    <td>{{ record[2] }}</td>
+	                    <td>{{ record[3] }}</td>
+	                    <td>{{ record[4] }}</td>
+	                </tr>
+
+	            {% endfor %}
+	        </tbody>
+
+
+	    </table>
+	  </div>
+  </div>
+  <!-- <h1>World Cups</h1>
   <form action="/worldcups" method="GET">
   	<input type="text" name="year" value="{{ year }}">
   </form>
@@ -23,9 +68,55 @@ World Cups
 		<h4>Runner-up: {{ runnerup }}</h4>
 		<p><strong>Third: {{ third }}</strong></p>
 		<p>Fourth: {{ fourth }}</p>
-	{% endif %}
+	{% endif %} -->
 = endblock
 
 
 = block footer
+<script src="/static/js/typeahead.bundle.js"></script>
+
+
+<script type="text/javascript">
+	var substringMatcher = function(strs) {
+	  return function findMatches(q, cb) {
+	    var matches, substringRegex;
+
+	    // an array that will be populated with substring matches
+	    matches = [];
+	    console.log('here');
+
+	    // regex used to determine if a string contains the substring `q`
+	    substrRegex = new RegExp(q, 'i');
+
+	    // iterate through the pool of strings and for any string that
+	    // contains the substring `q`, add it to the `matches` array
+	    $.each(strs, function(i, str) {
+	      if (substrRegex.test(str)) {
+	        matches.push(str);
+	      }
+	    });
+
+	    cb(matches);
+	  };
+	};
+
+
+	var years = ['1930', '1934', '1938', '1950', '1954', '1958', '1962', '1966', '1970', '1974', '1978', '1982', '1986', '1990', '1994', '1998', '2002', '2006', '2010', '2014']
+
+	$('#years .typeahead').typeahead(null, {
+	  name: 'year',
+	  limit: 100,
+	  source: substringMatcher(years)
+	});
+	// $('#scrollable-dropdown-menu .typeahead').typeahead(null,{
+	//   hint: true,
+	//   highlight: true,
+	//   minLength: 1
+	// },
+	// {
+	//   name: 'states',
+	//   source: substringMatcher(states)
+	// });
+
+</script>
 = endblock
