@@ -10,183 +10,66 @@ World Cup Stats
 = endblock
 
 = block content
-<div id="regions_div" style="width: 900px; height: 500px;"></div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-8 col-md-8 main">
+      <div id="regions_div" style="width: 900px; height: 500px;"></div>
 
-<input type="radio" name="rad_group" id="example1" value="Example 1" checked="checked"/>
-<label for="example1">Population</label>
-<input type="radio" name="rad_group" id="example2" value="Example 2" />
-<label for="example2">GDP</label>
-<input type="radio" name="rad_group" id="example3" value="Example 3" />
-<label for="example3">Life Expectancy</label>
-<input type="radio" name="rad_group" id="example4" value="Example 4" />
-<label for="example4">Urbanization Percentage</label>
-<input type="radio" name="rad_group" id="example5" value="Example 5" />
-<label for="example5">Per Capita GDP</label>
-
-<p id="country_label"></p>
-<p id="year">Through Year: {{ year }}</p>
-<p id="cup_wins"></p>
-<p id="appearances"></p>
-<p id="wins"></p>
-<p id="losses"></p>
-<p id="draws"></p>
-
-
-<script type="text/javascript">
-  google.charts.load('current', {
-    'packages':['geochart'],
-    // Note: you will need to get a mapsApiKey for your project.
-    // See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
-    'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
-  });
-  google.charts.setOnLoadCallback(drawRegionsMap);
-
-  type = "Population"
-
-  function generateData() {
-    var arr = [['Country', type] ];
-    switch(type) {
-      case "Population":
-        arr.push(['United States', 50]);
-        break;
-      case "GDP":
-        arr.push(['United States', 100000]);
-        break;
-      case "Life_Expectancy":
-        arr.push(['United States', 50]);
-        break;
-      case "Urbanization_Percentage":
-        arr.push(['United States', 50]);
-        break;
-      case "Per_Capita_GDP":
-        arr.push(['United States', 1000]);
-        break;
-      default:
-        arr.push(['United States', 50]);
-      }
-
-    
-    {% for record in country_year_data: %}
-
-      country_name = '{{ record[0] }}';
-      gdp = '{{ record[3] }}'
-      pop = '{{ record[4] }}'
-      life_expec = '{{ record[5] }}'
-      urb_per = '{{ record[6] }}'
-      per_cap_gdp = '{{ record[7] }}'
-
-      if((type === "GDP") && !(gdp === "None")) {
-        arr.push([country_name, gdp])
-      }
-      else if ((type === "Population") && !(pop === "None"))  {
-        arr.push([country_name, pop])
-      }
-      else if ((type === "Life_Expectancy") && !(life_expec === "None")) {
-        arr.push([country_name, life_expec])
-      }
-      else if ((type === "Urbanization_Percentage") && !(urb_per === "None")) {
-        arr.push([country_name, urb_per])
-      }
-      else if ((type === "Per_Capita_GDP") && !(per_cap_gdp === "None")) {
-        arr.push([country_name, per_cap_gdp])
-      }
-    {% endfor %}
-
-    return google.visualization.arrayToDataTable(arr);
-  }
-
-  function drawRegionsMap() {
-    var data = generateData();
-
-
-    var options = {};
-
-    var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
-    chart.draw(data, options);
-
-    // Handling Country Selection
-    google.visualization.events.addListener(chart, 'select', function () {
-        var selection = chart.getSelection()[0];
-        if (selection) {
-          var country = data.getValue(selection.row, 0);
-          displayCountryData(country);
-        }
-      })
-  
-  }
-
-  function displayCountryData(country) {
-    document.getElementById("country_label").innerHTML = "Country: " + country;
-    document.getElementById("cup_wins").innerHTML = "";
-    document.getElementById("appearances").innerHTML = "";
-    document.getElementById("wins").innerHTML = "";
-    document.getElementById("losses").innerHTML = "";
-    document.getElementById("draws").innerHTML = "";
-    
-    //For Graph Visualization later
-    countryToDisplay = country
-    
-    //Display stats for country from data table
-    {% for record in country_win_data: %}
-
-      country_name = '{{ record[0] }}';
-      cup_wins = '{{ record[1] }}'
-      appearances = '{{ record[2] }}'
-      wins = '{{ record[3] }}'
-      losses = '{{ record[4] }}'
-      draws = '{{ record[5] }}'
-
-      if(country_name === country) {
-        document.getElementById("cup_wins").innerHTML = "Cup Wins: " + cup_wins;
-        document.getElementById("appearances").innerHTML = "Appearances: " + appearances;
-        document.getElementById("wins").innerHTML = "Match Wins: " + wins;
-        document.getElementById("losses").innerHTML = "Match Losses: " + losses;
-        document.getElementById("draws").innerHTML = "Match Draws: " + draws;
-      }
-    {% endfor %}
-  }
-
-  //Handling radio button selection for colorizing map
-  var ex1 = document.getElementById('example1');
-  var ex2 = document.getElementById('example2');
-  var ex3 = document.getElementById('example3');
-  var ex4 = document.getElementById('example4');
-  var ex5 = document.getElementById('example5');
-
-  ex1.onclick = drawPop;
-  ex2.onclick = drawGDP;
-  ex3.onclick = drawLifeExpec;
-  ex4.onclick = drawUrban;
-  ex5.onclick = drawPerCapGDP;
-  
-  //Functions to handle colorizing by different metrics
-  function drawPop() {
-    type = "Population"
-    drawRegionsMap()
-  }
-
-  function drawGDP() {
-    type = "GDP"
-    drawRegionsMap()
-  }
-
-  function drawLifeExpec() {
-    type = "Life_Expectancy"
-    drawRegionsMap()
-  }
-
-  function drawUrban() {
-    type = "Urbanization_Percentage"
-    drawRegionsMap()
-  }
-
-  function drawPerCapGDP() {
-    type = "Per_Capita_GDP"
-    drawRegionsMap()
-  }
-
-</script>
-<button type="button" class="btn btn-primary" id="testbutton">Graph Visualization</button>
+<!--       <input type="radio" name="rad_group" id="example1" value="Example 1" checked="checked"/>
+      <label for="example1">Population</label>
+      <input type="radio" name="rad_group" id="example2" value="Example 2" />
+      <label for="example2">GDP</label>
+      <input type="radio" name="rad_group" id="example3" value="Example 3" />
+      <label for="example3">Life Expectancy</label>
+      <input type="radio" name="rad_group" id="example4" value="Example 4" />
+      <label for="example4">Urbanization Percentage</label>
+      <input type="radio" name="rad_group" id="example5" value="Example 5" />
+      <label for="example5">Per Capita GDP</label> -->
+    </div>
+      <div class="col-lg-4  col-md-4 col-sm-12">
+        <div class="card card-outline-secondary">
+          <div class="card-header">
+          <ul class="nav nav-pills card-header-pills">
+          <li class="nav-item">
+          <a id="example1" class="nav-link active" href="javascript:void(0);"">Population</a>
+          </li>
+          <li class="nav-item">
+          <a id="example2" class="nav-link" href="javascript:void(0);">GDP</a>
+          </li>
+          <li class="nav-item">
+          <a id="example3" class="nav-link" href="javascript:void(0);">Life Expectancy</a>
+          </li>
+          <li class="nav-item">
+          <a id="example4" class="nav-link" href="javascript:void(0);">Urbanization Percentage</a>
+          </li>
+          <li class="nav-item">
+          <a id="example5" class="nav-link" href="javascript:void(0);">Per Capita GDP</a>
+          </li>
+          </ul>
+          </div>
+          <div class="card-block">
+          <h3 class="text-center card-title">Country Information</h3>
+          <div id="placeholder">
+            <p class="card-text">Please select a country to show statistics.</p>
+          </div>
+          <div id="countryinfo" style="display: none;">
+          <ul class="list-group list-group-flush">
+            <li id="country_label" class="list-group-item"></li>
+            <li id="year" class="list-group-item">Through Year: {{ year }}</li>
+            <li id="cup_wins" class="list-group-item"></li>
+            <li id="appearances" class="list-group-item"></li>
+            <li id="wins" class="list-group-item"></li>
+            <li id="losses" class="list-group-item"></li>
+            <li id="draws" class="list-group-item"></li>
+          </ul>
+          <div id="wrapper">
+        <button type="button" style="margin: 0 auto;" class="btn btn-primary" id="testbutton">Graph Visualization</button>
+      </div>
+    </div>
+        </div>
+      </div>
+    </div><!--/row-->
+</div>
 
 <div id="graphmodal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
@@ -368,5 +251,206 @@ $(document).ready(function () {
             getGraphData(countryToDisplay);
         });
 });
+</script>
+<script type="text/javascript">
+  google.charts.load('current', {
+    'packages':['geochart'],
+    // Note: you will need to get a mapsApiKey for your project.
+    // See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
+    'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
+  });
+  google.charts.setOnLoadCallback(drawRegionsMap);
+
+  type = "Population"
+
+  function generateData() {
+    var arr = [['Country', type] ];
+    switch(type) {
+      case "Population":
+        arr.push(['United States', 50]);
+        break;
+      case "GDP":
+        arr.push(['United States', 100000]);
+        break;
+      case "Life_Expectancy":
+        arr.push(['United States', 50]);
+        break;
+      case "Urbanization_Percentage":
+        arr.push(['United States', 50]);
+        break;
+      case "Per_Capita_GDP":
+        arr.push(['United States', 1000]);
+        break;
+      default:
+        arr.push(['United States', 50]);
+      }
+
+    
+    {% for record in country_year_data: %}
+
+      country_name = '{{ record[0] }}';
+      gdp = '{{ record[3] }}'
+      pop = '{{ record[4] }}'
+      life_expec = '{{ record[5] }}'
+      urb_per = '{{ record[6] }}'
+      per_cap_gdp = '{{ record[7] }}'
+
+      if((type === "GDP") && !(gdp === "None")) {
+        arr.push([country_name, gdp])
+      }
+      else if ((type === "Population") && !(pop === "None"))  {
+        arr.push([country_name, pop])
+      }
+      else if ((type === "Life_Expectancy") && !(life_expec === "None")) {
+        arr.push([country_name, life_expec])
+      }
+      else if ((type === "Urbanization_Percentage") && !(urb_per === "None")) {
+        arr.push([country_name, urb_per])
+      }
+      else if ((type === "Per_Capita_GDP") && !(per_cap_gdp === "None")) {
+        arr.push([country_name, per_cap_gdp])
+      }
+    {% endfor %}
+
+    return google.visualization.arrayToDataTable(arr);
+  }
+
+  function drawRegionsMap() {
+    var data = generateData();
+
+
+    var options = {};
+
+    var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+    chart.draw(data, options);
+
+    // Handling Country Selection
+    google.visualization.events.addListener(chart, 'select', function () {
+        var selection = chart.getSelection()[0];
+        if (selection) {
+          var country = data.getValue(selection.row, 0);
+          displayCountryData(country);
+        }
+      })
+  
+  }
+
+  function displayCountryData(country) {
+    document.getElementById("country_label").innerHTML = "Country: " + country;
+    document.getElementById("cup_wins").innerHTML = "";
+    document.getElementById("appearances").innerHTML = "";
+    document.getElementById("wins").innerHTML = "";
+    document.getElementById("losses").innerHTML = "";
+    document.getElementById("draws").innerHTML = "";
+    
+    //For Graph Visualization later
+    countryToDisplay = country
+    
+    //Display stats for country from data table
+    {% for record in country_win_data: %}
+
+      country_name = '{{ record[0] }}';
+      cup_wins = '{{ record[1] }}'
+      appearances = '{{ record[2] }}'
+      wins = '{{ record[3] }}'
+      losses = '{{ record[4] }}'
+      draws = '{{ record[5] }}'
+
+      if(country_name === country) {
+        document.getElementById("cup_wins").innerHTML = "Cup Wins: " + cup_wins;
+        document.getElementById("appearances").innerHTML = "Appearances: " + appearances;
+        document.getElementById("wins").innerHTML = "Match Wins: " + wins;
+        document.getElementById("losses").innerHTML = "Match Losses: " + losses;
+        document.getElementById("draws").innerHTML = "Match Draws: " + draws;
+      }
+    {% endfor %}
+    $('#placeholder').css('display', 'none');
+    $('#countryinfo').css('display', '');
+  }
+
+  //Handling radio button selection for colorizing map
+  var ex1 = $('#example1');
+  var ex2 = $('#example2');
+  var ex3 = $('#example3');
+  var ex4 = $('#example4');
+  var ex5 = $('#example5');
+
+  ex1.click(function(e){
+    e.preventDefault();
+    ex1.removeClass("active");
+    ex2.removeClass("active");
+    ex3.removeClass("active");
+    ex4.removeClass("active");
+    ex5.removeClass("active");
+    ex1.addClass("active");
+    drawPop();
+  });
+  ex2.click(function(e){
+    e.preventDefault();
+    ex1.removeClass("active");
+    ex2.removeClass("active");
+    ex3.removeClass("active");
+    ex4.removeClass("active");
+    ex5.removeClass("active");
+    ex2.addClass("active");
+    drawGDP();
+  });
+  ex3.click(function(e){
+    e.preventDefault();
+    ex1.removeClass("active");
+    ex2.removeClass("active");
+    ex3.removeClass("active");
+    ex4.removeClass("active");
+    ex5.removeClass("active");
+    ex3.addClass("active");
+    drawLifeExpec();
+  });
+  ex4.click(function(e){
+    e.preventDefault();
+    ex1.removeClass("active");
+    ex2.removeClass("active");
+    ex3.removeClass("active");
+    ex4.removeClass("active");
+    ex5.removeClass("active");
+    ex4.addClass("active");
+    drawUrban();
+  });
+  ex5.click(function(e){
+    e.preventDefault();
+    ex1.removeClass('active');
+    ex2.removeClass("active");
+    ex3.removeClass("active");
+    ex4.removeClass("active");
+    ex5.removeClass("active");
+    ex5.addClass("active");
+    drawPerCapGDP();
+  });
+  
+  //Functions to handle colorizing by different metrics
+  function drawPop() {
+    type = "Population"
+    drawRegionsMap()
+  }
+
+  function drawGDP() {
+    type = "GDP"
+    drawRegionsMap()
+  }
+
+  function drawLifeExpec() {
+    type = "Life_Expectancy"
+    drawRegionsMap()
+  }
+
+  function drawUrban() {
+    type = "Urbanization_Percentage"
+    drawRegionsMap()
+  }
+
+  function drawPerCapGDP() {
+    type = "Per_Capita_GDP"
+    drawRegionsMap()
+  }
+
 </script>
 = endblock
