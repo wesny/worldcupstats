@@ -62,15 +62,34 @@ World Cup Stats
               </div>
             </div>
           <div id="countryinfo" style="display:none;">
-            <ul class="list-group list-group-flush">
-              <h4 id="country_label" class="list-group-item"></h4>
-              <!-- <h6 id="cup_wins" class="list-group-item" style="border-top:0px; margin-top:-14px;"></h6> -->
-              <h6 id="appearances" class="list-group-item" style="border-top:0px; margin-top:-10px;"></h6>
-              <li id="cup_wins" class="list-group-item list-group-item-info"></li>
-              <li id="wins" class="list-group-item list-group-item-success"></li>
-              <li id="draws" class="list-group-item list-group-item-warning"></li>
-              <li id="losses" class="list-group-item list-group-item-danger"></li>
-            </ul>
+            <h4 id="country_label" class="pl-4"></h4>
+            <div class="card">
+              <div class="card-header">
+                <ul class="nav nav-tabs card-header-tabs">
+                  <li class="nav-item">
+                    <a class="nav-link card-nav active" data-list='cup'>World Cup Info</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link card-nav" data-list='country'>Country Info</a>
+                  </li>
+                </ul>
+              </div>
+              <ul id="cup" class="list-group list-group-flush card-list">
+                <!-- <h6 id="cup_wins" class="list-group-item" style="border-top:0px; margin-top:-14px;"></h6> -->
+                <h6 id="appearances" class="list-group-item" style="border-top:0px;"></h6>
+                <li id="cup_wins" class="list-group-item list-group-item-info"></li>
+                <li id="wins" class="list-group-item list-group-item-success"></li>
+                <li id="draws" class="list-group-item list-group-item-warning"></li>
+                <li id="losses" class="list-group-item list-group-item-danger"></li>
+              </ul>
+              <ul id="country" class="list-group list-group-flush card-list" style="display:none;">
+                <h6 id="population" class="list-group-item" style="border-top:0px;">info</h6>
+                <li id="gdp" class="list-group-item list-group-item-info">info</li>
+                <li id="life_exp" class="list-group-item list-group-item-success">info</li>
+                <li id="urban" class="list-group-item list-group-item-warning">info</li>
+                <li id="per_cap_gdp" class="list-group-item list-group-item-danger">info</li>
+              </ul>
+            </div>
             <div id="wrapper" class="pt-4">
               <button type="button" style="margin: 0 auto;" class="btn btn-primary" id="testbutton">Graph Visualization</button>
             </div>
@@ -114,6 +133,14 @@ canvas {
 countryToDisplay = "Germany"
 
 $(document).ready(function () {
+
+    $('.card-nav').click(function(){
+      $('.card-nav').removeClass('active');
+      $(this).addClass('active');
+      $('.card-list').css('display','none');
+      $('#'+$(this).data('list')).css('display','block');
+    });
+
     window.getGraphData = function (country){
         $.getJSON("/getgraphdata", {country: country}, function(data){
             var chartData = {
@@ -139,7 +166,7 @@ $(document).ready(function () {
                 },
                 {
                     type: 'line',
-                    label: 'Life Expectency',
+                    label: 'Life Expectancy',
                     yAxisID: "y-axis-3",
                     borderColor: window.chartColors.orange,
                     fill: false,
@@ -225,7 +252,7 @@ $(document).ready(function () {
                             id: "y-axis-3",
                             scaleLabel: {
                                 display: true,
-                                labelString: 'Life Expectency'
+                                labelString: 'Life Expectancy'
                             }
                         }, {
                             type: "linear", // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
@@ -364,6 +391,9 @@ $(document).ready(function () {
       })
   
   }
+  const numberWithCommas = (x) => {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
 
   function displayCountryData(country) {
     document.getElementById("country_label").innerHTML = country;
@@ -377,6 +407,24 @@ $(document).ready(function () {
     countryToDisplay = country
     
     //Display stats for country from data table
+    {% for record in joined_records: %}
+
+      country_name = '{{ record[0] }}';
+      gdp = numberWithCommas(Number('{{ record[3] }}'))
+      pop = numberWithCommas('{{ record[4] }}')
+      life_expec = '{{ record[5] }}'
+      urb_per = '{{ record[6] }}'
+      per_cap_gdp = numberWithCommas('{{ record[7] }}')
+
+
+      if(country_name === country) {
+        document.getElementById("gdp").innerHTML = "GDP: " + gdp+' USD';
+        document.getElementById("population").innerHTML = "Population: " + pop;
+        document.getElementById("life_exp").innerHTML = "Life Expectancy: " + life_expec+' years';
+        document.getElementById("urban").innerHTML = "Urbanization Percentage: " + urb_per+'%';
+        document.getElementById("per_cap_gdp").innerHTML = "Per Capita GDP: " + per_cap_gdp+' USD';
+      }
+    {% endfor %}
     {% for record in country_win_data: %}
 
       country_name = '{{ record[0] }}';
