@@ -26,10 +26,9 @@ now = datetime.datetime.now()
 @app.route("/")
 def home():
     mYear = "2016"
-    country_info_year = get_country_year(0, mYear);
-    country_info = get_country_information(0);
+    joined_country_info = get_joined_country_information(mYear)
     country_wins_info = get_wins_overall(0);
-    return render_template("worldmap.html", year=mYear, country_year_data=country_info_year, country_win_data=country_wins_info)
+    return render_template("worldmap.html", year=mYear, joined_records=joined_country_info, country_win_data=country_wins_info)
 
 
 @app.route("/getgraphdata")
@@ -242,6 +241,14 @@ def get_country_information(country):
 			countries.append(record[0])
 		print(countries)
 		return records
+
+def get_joined_country_information(year):
+    countries = [];
+    cur.execute("SELECT * FROM public.country_year_geopol, country WHERE year='"+year+"' AND country.country_name = public.country_year_geopol.country  ORDER BY public.country_year_geopol.country;")
+    records = cur.fetchall()
+    for record in records:
+        countries.append(record[0])
+    return records
 
 def get_stats(country):
 

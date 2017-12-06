@@ -31,7 +31,7 @@ World Cup Stats
           <div class="card-header">
           <ul class="nav nav-pills card-header-pills">
           <li class="nav-item">
-          <a id="example1" class="nav-link active" href="javascript:void(0);"">Population</a>
+          <a id="example1" class="nav-link active" href="javascript:void(0);">Population</a>
           </li>
           <li class="nav-item">
           <a id="example2" class="nav-link" href="javascript:void(0);">GDP</a>
@@ -44,6 +44,12 @@ World Cup Stats
           </li>
           <li class="nav-item">
           <a id="example5" class="nav-link" href="javascript:void(0);">Per Capita GDP</a>
+          </li>
+          <li class="nav-item">
+          <a id="example6" class="nav-link" href="javascript:void(0);">Match Wins / 10 Million People</a>
+          </li>
+          <li class="nav-item">
+          <a id="example7" class="nav-link" href="javascript:void(0);">Match Wins / GDP Scaled</a>
           </li>
           </ul>
           </div>
@@ -284,12 +290,18 @@ $(document).ready(function () {
       case "Per_Capita_GDP":
         arr.push(['United States', 1000]);
         break;
+      case "Match_Wins_To_Population":
+        arr.push(['United States', .2]);
+        break;
+      case "Match_Wins_To_GDP":
+        arr.push(['United States', 0]);
+        break;
       default:
         arr.push(['United States', 50]);
       }
 
     
-    {% for record in country_year_data: %}
+    {% for record in joined_records: %}
 
       country_name = '{{ record[0] }}';
       gdp = '{{ record[3] }}'
@@ -297,6 +309,13 @@ $(document).ready(function () {
       life_expec = '{{ record[5] }}'
       urb_per = '{{ record[6] }}'
       per_cap_gdp = '{{ record[7] }}'
+
+      cup_wins = '{{ record[9] }}'
+      match_wins = '{{ record[10] }}'
+      match_losses = '{{ record[11] }}'
+      match_draws = '{{ record[12] }}'
+      cup_appearances = '{{ record[13] }}'
+
 
       if((type === "GDP") && !(gdp === "None")) {
         arr.push([country_name, gdp])
@@ -312,6 +331,14 @@ $(document).ready(function () {
       }
       else if ((type === "Per_Capita_GDP") && !(per_cap_gdp === "None")) {
         arr.push([country_name, per_cap_gdp])
+      }
+      else if ((type === "Match_Wins_To_Population") && !(pop === "None")) {
+        ratioVal = match_wins * 10000000/pop
+        arr.push([country_name, ratioVal])
+      }
+      else if ((type === "Match_Wins_To_GDP") && !(gdp === "None")) {
+        ratioVal = match_wins * 1000000000000/gdp
+        arr.push([country_name, ratioVal])
       }
     {% endfor %}
 
@@ -378,6 +405,8 @@ $(document).ready(function () {
   var ex3 = $('#example3');
   var ex4 = $('#example4');
   var ex5 = $('#example5');
+  var ex6 = $('#example6');
+  var ex7 = $('#example7');
 
   ex1.click(function(e){
     e.preventDefault();
@@ -386,6 +415,8 @@ $(document).ready(function () {
     ex3.removeClass("active");
     ex4.removeClass("active");
     ex5.removeClass("active");
+    ex6.removeClass("active");
+    ex7.removeClass("active");
     ex1.addClass("active");
     drawPop();
   });
@@ -396,6 +427,8 @@ $(document).ready(function () {
     ex3.removeClass("active");
     ex4.removeClass("active");
     ex5.removeClass("active");
+    ex6.removeClass("active");
+    ex7.removeClass("active");
     ex2.addClass("active");
     drawGDP();
   });
@@ -406,6 +439,8 @@ $(document).ready(function () {
     ex3.removeClass("active");
     ex4.removeClass("active");
     ex5.removeClass("active");
+    ex6.removeClass("active");
+    ex7.removeClass("active");
     ex3.addClass("active");
     drawLifeExpec();
   });
@@ -416,6 +451,8 @@ $(document).ready(function () {
     ex3.removeClass("active");
     ex4.removeClass("active");
     ex5.removeClass("active");
+    ex6.removeClass("active");
+    ex7.removeClass("active");
     ex4.addClass("active");
     drawUrban();
   });
@@ -426,8 +463,36 @@ $(document).ready(function () {
     ex3.removeClass("active");
     ex4.removeClass("active");
     ex5.removeClass("active");
+    ex6.removeClass("active");
+    ex7.removeClass("active");
     ex5.addClass("active");
     drawPerCapGDP();
+  });
+
+  ex6.click(function(e){
+    e.preventDefault();
+    ex1.removeClass('active');
+    ex2.removeClass("active");
+    ex3.removeClass("active");
+    ex4.removeClass("active");
+    ex5.removeClass("active");
+    ex6.removeClass("active");
+    ex7.removeClass("active");
+    ex6.addClass("active");
+    drawWinsPopRatio();
+  });
+
+  ex7.click(function(e){
+    e.preventDefault();
+    ex1.removeClass('active');
+    ex2.removeClass("active");
+    ex3.removeClass("active");
+    ex4.removeClass("active");
+    ex5.removeClass("active");
+    ex6.removeClass("active");
+    ex7.removeClass("active");
+    ex7.addClass("active");
+    drawWinsGdpRatio();
   });
   
   //Functions to handle colorizing by different metrics
@@ -455,6 +520,17 @@ $(document).ready(function () {
     type = "Per_Capita_GDP"
     drawRegionsMap()
   }
+
+  function drawWinsPopRatio() {
+    type = "Match_Wins_To_Population"
+    drawRegionsMap()
+  }
+
+  function drawWinsGdpRatio() {
+    type = "Match_Wins_To_GDP"
+    drawRegionsMap()
+  }
+
 
 </script>
 = endblock
