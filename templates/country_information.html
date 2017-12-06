@@ -7,6 +7,11 @@ Country Information
 
 = block head
 <link rel="stylesheet" href="/static/css/typeahead.css">
+<script type="text/javascript">
+	const numberWithCommas = (x) => {
+    	return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+</script>
 = endblock
 
 
@@ -65,6 +70,7 @@ Country Information
 
 
 <script type="text/javascript">
+	
 	var substringMatcher = function(strs) {
 	  return function findMatches(q, cb) {
 	    var matches, substringRegex;

@@ -198,22 +198,62 @@ def country_year():
 
 
 def get_country_year(country=False,year=False):
-    if year and country:
-        cur.execute("SELECT * FROM public.country_year_geopol where year='"+year+"' and country='"+country+"';")
-        records = cur.fetchall()
-        return records
-    elif country:
-        cur.execute("SELECT * FROM public.country_year_geopol where country='"+country+"' ORDER BY year;")
-        records = cur.fetchall()
-        return records
-    elif year:
-        cur.execute("SELECT * FROM public.country_year_geopol where year='"+year+"' ORDER BY country;")
-        records = cur.fetchall()
-        return records
-    else:
-        cur.execute("SELECT * FROM public.country_year_geopol ORDER BY country, year;")
-        records = cur.fetchall()
-        return records
+	if year and country:
+		cur.execute("SELECT * FROM public.country_year_geopol where year='"+year+"' and country='"+country+"';")
+		records = cur.fetchall()
+		ret = []
+		for record in records:
+			retpush = []
+			for partOfRecord in record:
+				if isinstance(partOfRecord, float):
+					retpush.append(format(partOfRecord,",.2f"))
+				else:
+					retpush.append(partOfRecord)
+			ret.append(tuple(retpush))
+		return ret
+		# return records
+	elif country:
+		cur.execute("SELECT * FROM public.country_year_geopol where country='"+country+"' ORDER BY year;")
+		records = cur.fetchall()
+		ret = []
+		for record in records:
+			retpush = []
+			for partOfRecord in record:
+				if isinstance(partOfRecord, float):
+					retpush.append(format(partOfRecord,",.2f"))
+				else:
+					retpush.append(partOfRecord)
+			ret.append(tuple(retpush))
+		return ret
+		# return records
+	elif year:
+		cur.execute("SELECT * FROM public.country_year_geopol where year='"+year+"' ORDER BY country;")
+		records = cur.fetchall()
+		ret = []
+		for record in records:
+			retpush = []
+			for partOfRecord in record:
+				if isinstance(partOfRecord, float):
+					retpush.append(format(partOfRecord,",.2f"))
+				else:
+					retpush.append(partOfRecord)
+			ret.append(tuple(retpush))
+		return ret
+		# return records
+	else:
+		cur.execute("SELECT * FROM public.country_year_geopol ORDER BY country, year;")
+		records = cur.fetchall()
+		ret = []
+		for record in records:
+			retpush = []
+			for partOfRecord in record:
+				if isinstance(partOfRecord, float):
+					retpush.append(format(partOfRecord,",.2f"))
+				else:
+					retpush.append(partOfRecord)
+			ret.append(tuple(retpush))
+		return ret
+		# return records
 
 @app.route("/country_information")
 def country_information():
@@ -232,15 +272,22 @@ def get_country_information(country):
 	if country:
 		cur.execute("SELECT * FROM public.country_geopol where country='"+country+"';")
 		records = cur.fetchall()
-		return records
+		ret = []
+		for record in records:
+			retpush = (record[0],record[1],format(record[2], ",.2f"),format(record[3], ",.2f"))
+			ret.append(retpush)
+
+		return ret
 	else:
 		countries = [];
 		cur.execute("SELECT * FROM public.country_geopol ORDER BY country;")
 		records = cur.fetchall()
+		ret = []
 		for record in records:
-			countries.append(record[0])
-		print(countries)
-		return records
+			retpush = (record[0],record[1],format(record[2], ",.2f"),format(record[3], ",.2f"))
+			ret.append(retpush)
+
+		return ret
 
 def get_joined_country_information(year):
     countries = [];
