@@ -57,6 +57,9 @@ World Cup Stats
           <li class="nav-item">
           <a id="example9" class="nav-link" href="javascript:void(0);">Match Wins / Urbanization Percentage</a>
           </li>
+          <li class="nav-item">
+          <a id="example10" class="nav-link" href="javascript:void(0);">Match Wins / Per Capita GDP</a>
+          </li>
           </ul>
           </div>
           <div class="card-block" style="height:500px;">
@@ -335,6 +338,9 @@ $(document).ready(function () {
       case "Match_Wins_To_Urbanization_Percentage":
         arr.push(['United States', 0]);
         break;
+      case "Match_Wins_To_GDP_Per_Capita":
+        arr.push(['United States', 0]);
+        break;
       default:
         arr.push(['United States', 50]);
       }
@@ -385,6 +391,10 @@ $(document).ready(function () {
       }
       else if ((type === "Match_Wins_To_Urbanization_Percentage") && !(urb_per === "None")) {
         ratioVal = match_wins * 1/urb_per
+        arr.push([country_name, ratioVal])
+      }
+      else if ((type === "Match_Wins_To_GDP_Per_Capita") && !(per_cap_gdp === "None")) {
+        ratioVal = match_wins * 1/per_cap_gdp
         arr.push([country_name, ratioVal])
       }
     {% endfor %}
@@ -477,6 +487,7 @@ $(document).ready(function () {
   var ex7 = $('#example7');
   var ex8 = $('#example8');
   var ex9 = $('#example9');
+  var ex10 = $('#example10');
 
   ex1.click(function(e){
     e.preventDefault();
@@ -489,6 +500,7 @@ $(document).ready(function () {
     ex7.removeClass("active");
     ex8.removeClass("active");
     ex9.removeClass("active");
+    ex10.removeClass("active");
     ex1.addClass("active");
     drawPop();
   });
@@ -503,6 +515,7 @@ $(document).ready(function () {
     ex7.removeClass("active");
     ex8.removeClass("active");
     ex9.removeClass("active");
+    ex10.removeClass("active");
     ex2.addClass("active");
     drawGDP();
   });
@@ -517,6 +530,7 @@ $(document).ready(function () {
     ex7.removeClass("active");
     ex8.removeClass("active");
     ex9.removeClass("active");
+    ex10.removeClass("active");
     ex3.addClass("active");
     drawLifeExpec();
   });
@@ -531,6 +545,7 @@ $(document).ready(function () {
     ex7.removeClass("active");
     ex8.removeClass("active");
     ex9.removeClass("active");
+    ex10.removeClass("active");
     ex4.addClass("active");
     drawUrban();
   });
@@ -545,6 +560,7 @@ $(document).ready(function () {
     ex7.removeClass("active");
     ex8.removeClass("active");
     ex9.removeClass("active");
+    ex10.removeClass("active");
     ex5.addClass("active");
     drawPerCapGDP();
   });
@@ -560,6 +576,7 @@ $(document).ready(function () {
     ex7.removeClass("active");
     ex8.removeClass("active");
     ex9.removeClass("active");
+    ex10.removeClass("active");
     ex6.addClass("active");
     drawWinsPopRatio();
   });
@@ -575,6 +592,7 @@ $(document).ready(function () {
     ex7.removeClass("active");
     ex8.removeClass("active");
     ex9.removeClass("active");
+    ex10.removeClass("active");
     ex7.addClass("active");
     drawWinsGdpRatio();
   });
@@ -590,6 +608,7 @@ $(document).ready(function () {
     ex7.removeClass("active");
     ex8.removeClass("active");
     ex9.removeClass("active");
+    ex10.removeClass("active");
     ex8.addClass("active");
     drawWinsLifeRatio();
   });
@@ -605,9 +624,28 @@ $(document).ready(function () {
     ex7.removeClass("active");
     ex8.removeClass("active");
     ex9.removeClass("active");
+    ex10.removeClass("active");
     ex9.addClass("active");
     drawWinsUrbRatio();
   });
+
+  ex10.click(function(e){
+    e.preventDefault();
+    ex1.removeClass('active');
+    ex2.removeClass("active");
+    ex3.removeClass("active");
+    ex4.removeClass("active");
+    ex5.removeClass("active");
+    ex6.removeClass("active");
+    ex7.removeClass("active");
+    ex8.removeClass("active");
+    ex9.removeClass("active");
+    ex10.removeClass("active");
+    ex10.addClass("active");
+    drawWinsGDPPerCapRatio()
+  });
+
+  
   
   //Functions to handle colorizing by different metrics
   function drawPop() {
@@ -652,6 +690,12 @@ $(document).ready(function () {
 
   function drawWinsUrbRatio() {
     type = "Match_Wins_To_Urbanization_Percentage"
+    drawRegionsMap()
+  }
+
+
+  function drawWinsGDPPerCapRatio() {
+    type = "Match_Wins_To_GDP_Per_Capita"
     drawRegionsMap()
   }
 
