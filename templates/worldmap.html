@@ -51,6 +51,12 @@ World Cup Stats
           <li class="nav-item">
           <a id="example7" class="nav-link" href="javascript:void(0);">Match Wins / GDP Scaled</a>
           </li>
+          <li class="nav-item">
+          <a id="example8" class="nav-link" href="javascript:void(0);">Match Wins / Life Expectancy</a>
+          </li>
+          <li class="nav-item">
+          <a id="example9" class="nav-link" href="javascript:void(0);">Match Wins / Urbanization Percentage</a>
+          </li>
           </ul>
           </div>
           <div class="card-block" style="height:500px;">
@@ -323,6 +329,12 @@ $(document).ready(function () {
       case "Match_Wins_To_GDP":
         arr.push(['United States', 0]);
         break;
+      case "Match_Wins_To_Life_Expectancy":
+        arr.push(['United States', 0]);
+        break;
+      case "Match_Wins_To_Urbanization_Percentage":
+        arr.push(['United States', 0]);
+        break;
       default:
         arr.push(['United States', 50]);
       }
@@ -365,6 +377,14 @@ $(document).ready(function () {
       }
       else if ((type === "Match_Wins_To_GDP") && !(gdp === "None")) {
         ratioVal = match_wins * 1000000000000/gdp
+        arr.push([country_name, ratioVal])
+      }
+      else if ((type === "Match_Wins_To_Life_Expectancy") && !(life_expec === "None")) {
+        ratioVal = match_wins * 1/life_expec
+        arr.push([country_name, ratioVal])
+      }
+      else if ((type === "Match_Wins_To_Urbanization_Percentage") && !(urb_per === "None")) {
+        ratioVal = match_wins * 1/urb_per
         arr.push([country_name, ratioVal])
       }
     {% endfor %}
@@ -455,6 +475,8 @@ $(document).ready(function () {
   var ex5 = $('#example5');
   var ex6 = $('#example6');
   var ex7 = $('#example7');
+  var ex8 = $('#example8');
+  var ex9 = $('#example9');
 
   ex1.click(function(e){
     e.preventDefault();
@@ -465,6 +487,8 @@ $(document).ready(function () {
     ex5.removeClass("active");
     ex6.removeClass("active");
     ex7.removeClass("active");
+    ex8.removeClass("active");
+    ex9.removeClass("active");
     ex1.addClass("active");
     drawPop();
   });
@@ -477,6 +501,8 @@ $(document).ready(function () {
     ex5.removeClass("active");
     ex6.removeClass("active");
     ex7.removeClass("active");
+    ex8.removeClass("active");
+    ex9.removeClass("active");
     ex2.addClass("active");
     drawGDP();
   });
@@ -489,6 +515,8 @@ $(document).ready(function () {
     ex5.removeClass("active");
     ex6.removeClass("active");
     ex7.removeClass("active");
+    ex8.removeClass("active");
+    ex9.removeClass("active");
     ex3.addClass("active");
     drawLifeExpec();
   });
@@ -501,6 +529,8 @@ $(document).ready(function () {
     ex5.removeClass("active");
     ex6.removeClass("active");
     ex7.removeClass("active");
+    ex8.removeClass("active");
+    ex9.removeClass("active");
     ex4.addClass("active");
     drawUrban();
   });
@@ -513,6 +543,8 @@ $(document).ready(function () {
     ex5.removeClass("active");
     ex6.removeClass("active");
     ex7.removeClass("active");
+    ex8.removeClass("active");
+    ex9.removeClass("active");
     ex5.addClass("active");
     drawPerCapGDP();
   });
@@ -526,6 +558,8 @@ $(document).ready(function () {
     ex5.removeClass("active");
     ex6.removeClass("active");
     ex7.removeClass("active");
+    ex8.removeClass("active");
+    ex9.removeClass("active");
     ex6.addClass("active");
     drawWinsPopRatio();
   });
@@ -539,8 +573,40 @@ $(document).ready(function () {
     ex5.removeClass("active");
     ex6.removeClass("active");
     ex7.removeClass("active");
+    ex8.removeClass("active");
+    ex9.removeClass("active");
     ex7.addClass("active");
     drawWinsGdpRatio();
+  });
+
+  ex8.click(function(e){
+    e.preventDefault();
+    ex1.removeClass('active');
+    ex2.removeClass("active");
+    ex3.removeClass("active");
+    ex4.removeClass("active");
+    ex5.removeClass("active");
+    ex6.removeClass("active");
+    ex7.removeClass("active");
+    ex8.removeClass("active");
+    ex9.removeClass("active");
+    ex8.addClass("active");
+    drawWinsLifeRatio();
+  });
+
+  ex9.click(function(e){
+    e.preventDefault();
+    ex1.removeClass('active');
+    ex2.removeClass("active");
+    ex3.removeClass("active");
+    ex4.removeClass("active");
+    ex5.removeClass("active");
+    ex6.removeClass("active");
+    ex7.removeClass("active");
+    ex8.removeClass("active");
+    ex9.removeClass("active");
+    ex9.addClass("active");
+    drawWinsUrbRatio();
   });
   
   //Functions to handle colorizing by different metrics
@@ -576,6 +642,16 @@ $(document).ready(function () {
 
   function drawWinsGdpRatio() {
     type = "Match_Wins_To_GDP"
+    drawRegionsMap()
+  }
+
+  function drawWinsLifeRatio() {
+    type = "Match_Wins_To_Life_Expectancy"
+    drawRegionsMap()
+  }
+
+  function drawWinsUrbRatio() {
+    type = "Match_Wins_To_Urbanization_Percentage"
     drawRegionsMap()
   }
 
